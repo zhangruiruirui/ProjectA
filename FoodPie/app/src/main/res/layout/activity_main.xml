@@ -3,26 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="lanou.foodpie.MainActivity">
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/frameMain"
+        android:layout_weight="6"
         android:layout_width="match_parent"
-        android:id="@+id/main_client"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        >
-        <android.support.design.widget.TabLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/main_tablayout">
-        </android.support.design.widget.TabLayout>
+        android:layout_height="0dp">
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="0.7"
+        android:orientation="horizontal"
+        android:layout_height="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioGroup
+                android:id="@+id/rgMain"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RadioButton
+                    android:layout_weight="1"
+                    android:id="@+id/rbFood"
+                    android:layout_gravity="center"
+                    android:button="@null"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:text="@string/food_name"/>
 
-
-    </RelativeLayout>
-
+                <RadioButton
+                    android:layout_gravity="center"
+                    android:id="@+id/rbEat"
+                    android:button="@null"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="@string/toEat_name"
+                    android:layout_height="match_parent"/>
+                <RadioButton
+                    android:id="@+id/rbMy"
+                    android:button="@null"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:text="@string/my_name"
+                    android:layout_height="match_parent"/>
+            </RadioGroup>
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

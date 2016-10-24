@@ -12,15 +12,6 @@ import java.util.ArrayList;
  */
 public class MyAdapter extends FragmentPagerAdapter {
     ArrayList<Fragment> fragments;
-    ArrayList<String> title = new ArrayList<>();
-    String [] titles = {"食物百科","狂吃","我的"};
-
-    public void setFragments(ArrayList<Fragment> fragments) {
-        this.fragments = fragments;
-        for (int i = 0; i < titles.length; i++) {
-            title.add(titles[i]);
-        }
-    }
 
     public MyAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {
         super(fm);
@@ -29,7 +20,6 @@ public class MyAdapter extends FragmentPagerAdapter {
 
     public MyAdapter(FragmentManager fm) {
         super(fm);
-
     }
 
     @Override
@@ -39,6 +29,7 @@ public class MyAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return fragments == null ? 0 : fragments.size();
+        return fragments.size();
     }
 }
+
