@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="lanou.foodpie.MainActivity">
+    tools:context=".activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/frameMain"
@@ -29,10 +28,12 @@
                 <RadioButton
                     android:layout_weight="1"
                     android:id="@+id/rbFood"
+                    android:textColor="@drawable/color_radiobutton"
+                    android:drawableTop="@drawable/radio_group_selector"
                     android:layout_gravity="center"
                     android:button="@null"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="@string/food_name"/>
 
@@ -40,19 +41,24 @@
                     android:layout_gravity="center"
                     android:id="@+id/rbEat"
                     android:button="@null"
-                    android:layout_width="0dp"
+                    android:drawableTop="@drawable/radio_toeat"
+                    android:textColor="@drawable/color_radiobutton"
+                    android:layout_width="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="@string/toEat_name"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="wrap_content"/>
                 <RadioButton
                     android:id="@+id/rbMy"
                     android:button="@null"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
+                    android:drawableTop="@drawable/radio_my"
+                    android:layout_gravity="center"
+                    android:textColor="@drawable/color_radiobutton"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
                     android:text="@string/my_name"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="wrap_content"/>
             </RadioGroup>
         </RelativeLayout>
     </LinearLayout>
