@@ -4,11 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+        <include layout="@layout/radio_title"/>
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/colorAccent"
-        app:tabSelectedTextColor="@color/transparent"
+        app:tabTextColor="@color/transparent"
+        app:tabSelectedTextColor="@color/colorAccent"
         app:tabIndicatorColor="@color/colorTb"
         android:id="@+id/tbToEat">
     </android.support.design.widget.TabLayout>

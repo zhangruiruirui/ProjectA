@@ -11,6 +11,7 @@
         android:layout_weight="6"
         android:layout_width="match_parent"
         android:layout_height="0dp">
+
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
+                    android:checked="true"
                     android:text="@string/food_name"/>
 
                 <RadioButton

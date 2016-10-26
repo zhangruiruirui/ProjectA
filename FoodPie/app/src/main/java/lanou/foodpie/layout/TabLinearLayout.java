@@ -195,7 +195,6 @@ public class TabLinearLayout extends LinearLayout implements View.OnClickListene
         int tabWidth = getWidth() / mRealVisibleTabCounts;
         // 计算小圆点的偏移量，这个可以画图理解
         mOffset = (int) (tabWidth / 2 + sourcePosition * tabWidth + positionOffset * tabWidth );
-        System.out.println("tabWidth="+tabWidth+"--mOffset="+mOffset+"---->"+sourcePosition+"--->"+positionOffset);
         // 如果滚动到最后一个，则同时要向左滚动tab内容，这种情况是：原点在向右移动，同时整体又向做滑动，两个滑动相互抵消，相当于原点没有移动
         if (getChildCount() > mRealVisibleTabCounts && positionOffset > 0
                 && sourcePosition >= mRealVisibleTabCounts - 1) {
