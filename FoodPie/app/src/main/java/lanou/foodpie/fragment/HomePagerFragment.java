@@ -2,8 +2,12 @@ package lanou.foodpie.fragment;
 
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
@@ -23,7 +27,10 @@ import java.util.ArrayList;
 import lanou.foodpie.R;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.adpter.HomePagerAdapter;
+import lanou.foodpie.bean.HomeDataBean;
 import lanou.foodpie.bean.HomePagerBean;
+import lanou.foodpie.gson.GsonRequest;
+import lanou.foodpie.gson.VolleySingleton;
 
 /**
  * Created by ZhangRui on 16/10/25.
@@ -33,7 +40,7 @@ public class HomePagerFragment extends BaseFragment {
     private PullToRefreshListView pullHomePager;
     private HomePagerAdapter homePagerAdapter;
     private ArrayList<HomePagerBean> arrayList;
-    private String uri;
+    private String uri = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=1&per=10";
 
     @Override
     protected void initData() {
@@ -41,15 +48,57 @@ public class HomePagerFragment extends BaseFragment {
         pullHomePager.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
-                arrayList.clear();
-                HomePagerAsyncTask homePagerAsyncTask = new HomePagerAsyncTask();
-                homePagerAsyncTask.execute(uri);
+                GsonRequest<HomeDataBean> gsonRequest = new GsonRequest<HomeDataBean>(HomeDataBean.class, uri, new Response.Listener<HomeDataBean>() {
+                    @Override
+                    public void onResponse(HomeDataBean response) {
+                        for (int i = 0; i < response.getFeeds().size(); i++) {
+                            HomePagerBean bean = new HomePagerBean();
+                            bean.setImgUrl(response.getFeeds().get(i).getCard_image());
+                            bean.setTitle(response.getFeeds().get(i).getTitle());
+                            bean.setTitle(response.getFeeds().get(i).getPublisher());
+                            arrayList.add(bean);
+
+                        }
+                        homePagerAdapter.setArrayList(arrayList);
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                VolleySingleton.getInstance().addRequest(gsonRequest);
+                pullHomePager.setAdapter(homePagerAdapter);
+
+
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
-                HomePagerAsyncTask homePagerAsyncTask = new HomePagerAsyncTask();
-                homePagerAsyncTask.execute("http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=1&per=10");
+                GsonRequest<HomeDataBean> gsonRequest = new GsonRequest<HomeDataBean>(HomeDataBean.class, uri, new Response.Listener<HomeDataBean>() {
+                    @Override
+                    public void onResponse(HomeDataBean response) {
+                        for (int i = 0; i < response.getFeeds().size(); i++) {
+                            HomePagerBean bean = new HomePagerBean();
+                            bean.setImgUrl(response.getFeeds().get(i).getCard_image());
+                            bean.setTitle(response.getFeeds().get(i).getTitle());
+                            bean.setTitle(response.getFeeds().get(i).getPublisher());
+                            arrayList.add(bean);
+
+                        }
+                        homePagerAdapter.setArrayList(arrayList);
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                VolleySingleton.getInstance().addRequest(gsonRequest);
+                pullHomePager.setAdapter(homePagerAdapter);
+
 
             }
         });
@@ -63,79 +112,20 @@ public class HomePagerFragment extends BaseFragment {
         homePagerAdapter = new HomePagerAdapter(getContext());
         pullHomePager.setAdapter(homePagerAdapter);
         arrayList = new ArrayList<>();
-        HomePagerAsyncTask homePagerAsyncTask = new HomePagerAsyncTask();
-        uri = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=1&per=10";
-        homePagerAsyncTask.execute(uri);
+
+
+
 
     }
     @Override
     protected int getLayout() {
         return R.layout.fragment_homepager;
     }
-    class HomePagerAsyncTask extends AsyncTask<String,Integer,ArrayList<HomePagerBean>> {
-        @Override
-        protected ArrayList<HomePagerBean> doInBackground(String... params) {
-            //解析
-            try {
-                URL url = new URL(params[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK){
-                    InputStream is = connection.getInputStream();
-                    InputStreamReader reader = new InputStreamReader(is);
-                    BufferedReader bufferedReader = new BufferedReader(reader);
-                    String line = "";
-                    String result = new String();
-                    while((line =bufferedReader.readLine())!= null){
-                        result += line;
-                    }
-                    JSONObject object = new JSONObject(result);
-                    //抓接口网址 JSON 解析出来的一条
-                    if (object.has("T1348647909107")){
-                        JSONArray array = object.getJSONArray("T1348647909107");
-                        //把每一条拿出来解析 放到个集合中
-                        for (int i = 0; i < array.length(); i++) {
-                            JSONObject object1 = (JSONObject) array.get(i);
-                            HomePagerBean bean = new HomePagerBean();
-                            if (object1.has("title")){
-                                bean.setTitle(object1.getString("title"));
-                            }
-                            if (object1.has("imgsrc")){
-                                bean.setImgUrl(object1.getString("imgsrc"));
-                            }
-                            arrayList.add(bean);
-
-                        }
-                    }
-                    is.close();
-                    reader.close();
-                    bufferedReader.close();
-                    connection.disconnect();
-                }
 
 
 
-            } catch (MalformedURLException e) {
-
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return arrayList;
-        }
-
-        //拿到集合
-        //加网络权限
 
 
-        @Override
-        protected void onPostExecute(ArrayList<HomePagerBean> headBeen) {
-            homePagerAdapter.setArrayList(headBeen);
-            homePagerAdapter.notifyDataSetChanged();
-            pullHomePager.onRefreshComplete();
 
-        }
     }
-}
+

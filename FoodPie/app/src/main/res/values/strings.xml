@@ -9,4 +9,7 @@
     <string name="myOrder_name">我的订单</string>
     <string name="queryFood_name">查 询 食 物 信 息</string>
     <string name="search_name">请输入食物名称</string>
+    <string name="diet_name">饮食分析</string>
+    <string name="searchVs_name">搜索对比</string>
+    <string name="scanVs_name">扫码对比</string>
 </resources>

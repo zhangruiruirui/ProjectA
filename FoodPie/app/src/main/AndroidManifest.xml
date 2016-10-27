@@ -8,6 +8,7 @@
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".gson.MyApp"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.WelcomeActivity"
             android:theme="@style/CustomTitle">

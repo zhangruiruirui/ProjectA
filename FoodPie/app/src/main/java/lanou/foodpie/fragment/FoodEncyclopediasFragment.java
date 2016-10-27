@@ -14,15 +14,11 @@ import lanou.foodpie.R;
  * 食物百科Fragment
  */
 public class FoodEncyclopediasFragment extends BaseFragment {
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getLayout(),container,false);
-    }
+
 
     @Override
-    protected void initData() {
-
+    protected int getLayout() {
+        return R.layout.fragment_foodencylopedias;
     }
 
     @Override
@@ -31,7 +27,7 @@ public class FoodEncyclopediasFragment extends BaseFragment {
     }
 
     @Override
-    protected int getLayout() {
-        return R.layout.fragment_foodencylopedias;
+    protected void initData() {
+
     }
 }

@@ -22,9 +22,11 @@ public abstract class BaseFragment extends Fragment {
             // 如果 Fragment没有指定布局
             // 默认 就加载一个空布局, 防止程序崩溃
             return inflater.inflate(R.layout.null_layout, container, false);
+        }else {
+            return inflater.inflate(getLayout(), container, false);
         }
 
-        return inflater.inflate(getLayout(), container, false);
+
     }
 
     @Override

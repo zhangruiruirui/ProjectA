@@ -8,154 +8,133 @@ import java.util.List;
  */
 public class HomeDataBean {
     /**
-     * group_count : 3
-     * group : [{"kind":"group","categories":[{"id":1,"name":"主食类","image_url":"http://up.boohee.cn/house/u/food_library/category/1_v1.png","sub_category_count":3,"sub_categories":[{"id":13,"name":"包装谷薯","image_url":null},{"id":11,"name":"天然谷薯","image_url":null},{"id":12,"name":"谷薯制品","image_url":null}],"description":null},{"id":2,"name":"肉蛋类","image_url":"http://up.boohee.cn/house/u/food_library/category/2_v1.png","sub_category_count":3,"sub_categories":[{"id":22,"name":"白肉","image_url":null},{"id":21,"name":"红肉","image_url":null},{"id":23,"name":"蛋类","image_url":null}],"description":null},{"id":3,"name":"大豆及制品","image_url":"http://up.boohee.cn/house/u/food_library/category/3_v1.png","sub_category_count":1,"sub_categories":[{"id":31,"name":"大豆及制品","image_url":null}],"description":null},{"id":4,"name":"蔬菜菌藻类","image_url":"http://up.boohee.cn/house/u/food_library/category/4_v1.png","sub_category_count":2,"sub_categories":[{"id":42,"name":"菌藻","image_url":null},{"id":41,"name":"蔬菜","image_url":null}],"description":null},{"id":5,"name":"水果类","image_url":"http://up.boohee.cn/house/u/food_library/category/5_v1.png","sub_category_count":1,"sub_categories":[{"id":51,"name":"水果","image_url":null}],"description":null},{"id":6,"name":"奶类","image_url":"http://up.boohee.cn/house/u/food_library/category/6_v1.png","sub_category_count":5,"sub_categories":[{"id":65,"name":"其它","image_url":null},{"id":64,"name":"奶粉","image_url":null},{"id":63,"name":"奶酪","image_url":null},{"id":62,"name":"酸奶","image_url":null},{"id":61,"name":"鲜奶","image_url":null}],"description":null},{"id":7,"name":"油脂类","image_url":"http://up.boohee.cn/house/u/food_library/category/7_v1.png","sub_category_count":2,"sub_categories":[{"id":72,"name":"动物油","image_url":null},{"id":71,"name":"植物油","image_url":null}],"description":null},{"id":8,"name":"坚果类","image_url":"http://up.boohee.cn/house/u/food_library/category/8_v1.png","sub_category_count":1,"sub_categories":[{"id":81,"name":"坚果种子","image_url":null}],"description":null},{"id":9,"name":"调味品","image_url":"http://up.boohee.cn/house/u/food_library/category/9_v1.png","sub_category_count":4,"sub_categories":[{"id":94,"name":"糖和蜂蜜","image_url":null},{"id":91,"name":"调味料","image_url":null},{"id":92,"name":"调味酱","image_url":null},{"id":93,"name":"酱菜","image_url":null}],"description":null},{"id":10,"name":"饮料类","image_url":"http://up.boohee.cn/house/u/food_library/category/10_v1.png","sub_category_count":8,"sub_categories":[{"id":108,"name":"乳饮料","image_url":null},{"id":104,"name":"含糖饮料","image_url":null},{"id":107,"name":"固体饮料","image_url":null},{"id":106,"name":"无糖咖啡","image_url":null},{"id":105,"name":"无糖茶饮","image_url":null},{"id":102,"name":"碳酸饮料","image_url":null},{"id":103,"name":"纯果蔬汁饮料","image_url":null},{"id":101,"name":"酒精饮料","image_url":null}],"description":null},{"id":11,"name":"零食，点心及冷饮","image_url":"http://up.boohee.cn/house/u/food_library/category/11_v1.png","sub_category_count":3,"sub_categories":[{"id":113,"name":"冷饮","image_url":null},{"id":112,"name":"点心","image_url":null},{"id":111,"name":"零食","image_url":null}],"description":null},{"id":12,"name":"其它","image_url":"http://up.boohee.cn/house/u/food_library/category/12_v1.png","sub_category_count":2,"sub_categories":[{"id":121,"name":"药食","image_url":null},{"id":122,"name":"营养保健","image_url":null}],"description":null}]},{"kind":"brand","categories":[{"id":20,"name":"薄荷","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand1.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":1,"name":"鲜得味","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand2.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":2,"name":"雀巢","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand3.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":3,"name":"光明","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand4.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":4,"name":"伊利","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand5.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":5,"name":"蒙牛","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand6.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":6,"name":"三全","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand7.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":7,"name":"永和","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand8.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":8,"name":"南方","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand9.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":9,"name":"康师傅","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand10.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":10,"name":"思念","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand11.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":21,"name":"新农哥","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand12.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":23,"name":"旺旺","image_url":"http://up.boohee.cn/house/u/food_library/brand/brand13.png","sub_category_count":0,"sub_categories":[],"description":null}]},{"kind":"restaurant","categories":[{"id":1,"name":"肯德基","image_url":"http://up.boohee.cn/house/u/food_library/chain_restaurant/linkage1.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":2,"name":"麦当劳","image_url":"http://up.boohee.cn/house/u/food_library/chain_restaurant/linkage2.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":3,"name":"星巴克","image_url":"http://up.boohee.cn/house/u/food_library/chain_restaurant/linkage3.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":4,"name":"吉野家","image_url":"http://up.boohee.cn/house/u/food_library/chain_restaurant/linkage4.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":5,"name":"德克士","image_url":"http://up.boohee.cn/house/u/food_library/chain_restaurant/linkage5.png","sub_category_count":0,"sub_categories":[],"description":null},{"id":6,"name":"大娘水饺","image_url":"http://up.boohee.cn/house/u/food_library/chain_restaurant/linkage6.png","sub_category_count":0,"sub_categories":[],"description":null}]}]
+     * page : 1
+     * total_pages : 195
+     * feeds : [{"item_id":7593,"title":"休息日早餐","card_image":"http://one.boohee.cn/food/2016/10/24/9E6BF442-E85F-45BE-979A-EECF4FB3E51B.jpg?imageView2/2/w/640","publisher":"言言言言西早","publisher_avatar":"http://wx.qlogo.cn/mmopen/6KA0QCGAlFyyuUrfHc706G1E3WEqzPELYfib14IBq2PibW8UFGiaGFAdNAAwSKBhRd1MBnficMD4KvYsNsGTRZuy9W0Ss0PDnxQ8/0","description":"","content_type":5,"type":"food_card","like_ct":61},{"item_id":7594,"title":"休息日早餐","card_image":"http://one.boohee.cn/food/2016/10/24/D776CA50-F7D1-4D65-B6E6-0A206A67E9FE.jpg?imageView2/2/w/640","publisher":"言言言言西早","publisher_avatar":"http://wx.qlogo.cn/mmopen/6KA0QCGAlFyyuUrfHc706G1E3WEqzPELYfib14IBq2PibW8UFGiaGFAdNAAwSKBhRd1MBnficMD4KvYsNsGTRZuy9W0Ss0PDnxQ8/0","description":"","content_type":5,"type":"food_card","like_ct":41},{"item_id":7375,"title":"秋葵包龙利鱼","card_image":"http://one.boohee.cn/food/2016/10/18/0C797C58-2999-4C39-A112-F34CD247734D.jpg?imageView2/2/w/640","publisher":"子倩_","publisher_avatar":"http://wx.qlogo.cn/mmopen/PiajxSqBRaEK4YOdZ5Kic8KT7Cq5cRibBneS0WmzV5LicMia3anVOsNc098cfSDD2uMfC5VtExJEUibvWuk8607htcLA/0","description":"玉米粥➕圣女果➕橘子➕紫薯➕鸡蛋➕秋葵➕龙利鱼","content_type":5,"type":"food_card","like_ct":135},{"item_id":7264,"title":"香煎鲳鱼","card_image":"http://one.boohee.cn/food/2016/10/15/85F2A209-8BA3-4184-8812-E182EC1F94F2.jpg?imageView2/2/w/640","publisher":"艾米82808","publisher_avatar":"http://wx.qlogo.cn/mmopen/brsKjTrsruV0XF0fEribr3ayR1I4H3wNbI400UORicyyVeU6wcNXJRWhkHibEqiaBZGBsmZSa2ZMiaLZI8WmRRDYVZ82iaFeTLbzH6/0","description":"作为减脂餐 还不错","content_type":5,"type":"food_card","like_ct":44},{"item_id":7271,"title":"意大利面","card_image":"http://one.boohee.cn/food/2016/10/15/D30D6602-BF8F-412B-83E4-120AE7A16F58.jpg?imageView2/2/w/640","publisher":"小情绪..","publisher_avatar":"http://wx.qlogo.cn/mmopen/PiajxSqBRaEIibwzVXXnTox28hFWNaoQnaia6CGrDhr7NwsoRiadBgGwDeicicODY6wThrcoKWicVaTTt4AlCJ6BxGsVQ/0","description":"自制意大利白汤面","content_type":5,"type":"food_card","like_ct":69},{"item_id":7274,"title":"珍珠肉丸&牛油果","card_image":"http://one.boohee.cn/food/2016/10/15/09AD676B-E929-4B7A-B1E9-6684E93AA8BC.jpg?imageView2/2/w/640","publisher":"凯瑟琳de厨房","publisher_avatar":"http://one.boohee.cn/t/2016/10/21/6668E33D-3CA3-4260-9898-FC15AA31F449.jpg","description":"","content_type":5,"type":"food_card","like_ct":57},{"item_id":7281,"title":"肉松三明治","card_image":"http://one.boohee.cn/food/2016/10/16/02BB68B3-C45A-4E1E-ADB8-AAA32A97CFC9.jpg?imageView2/2/w/640","publisher":"我是林春春","publisher_avatar":"http://one.boohee.cn/t/2016/9/26/B6EA0FE8-B494-4F88-BCB2-893152016A28.jpg","description":"#简易早餐# 肉松三明治  生活就像一杯白开水，你每天都在喝，不要羡慕别人喝的饮料有各种颜色，其实未必有你的白开水解渴。[太阳]","content_type":5,"type":"food_card","like_ct":59},{"item_id":7283,"title":"自制鸡蛋三明治","card_image":"http://one.boohee.cn/food/2016/10/16/6FA3040E-C9D4-4851-AB75-46160510AD0D.jpg?imageView2/2/w/640","publisher":"小情绪..","publisher_avatar":"http://wx.qlogo.cn/mmopen/PiajxSqBRaEIibwzVXXnTox28hFWNaoQnaia6CGrDhr7NwsoRiadBgGwDeicicODY6wThrcoKWicVaTTt4AlCJ6BxGsVQ/0","description":"","content_type":5,"type":"food_card","like_ct":59},{"item_id":7304,"title":"午餐","card_image":"http://one.boohee.cn/food/2016/10/16/3470D50E-7F59-44CD-A716-D1C2EC903141.jpg?imageView2/2/w/640","publisher":"小情绪..","publisher_avatar":"http://wx.qlogo.cn/mmopen/PiajxSqBRaEIibwzVXXnTox28hFWNaoQnaia6CGrDhr7NwsoRiadBgGwDeicicODY6wThrcoKWicVaTTt4AlCJ6BxGsVQ/0","description":"","content_type":5,"type":"food_card","like_ct":24},{"item_id":7314,"title":"休息日早餐","card_image":"http://one.boohee.cn/food/2016/10/16/C3B777A0-91AF-4623-84BC-F68CB4515541.jpg?imageView2/2/w/640","publisher":"言言言言西早","publisher_avatar":"http://wx.qlogo.cn/mmopen/6KA0QCGAlFyyuUrfHc706G1E3WEqzPELYfib14IBq2PibW8UFGiaGFAdNAAwSKBhRd1MBnficMD4KvYsNsGTRZuy9W0Ss0PDnxQ8/0","description":"","content_type":5,"type":"food_card","like_ct":46}]
      */
 
-    private int group_count;
+    private String page;
+    private int total_pages;
     /**
-     * kind : group
-     * categories : [{"id":1,"name":"主食类","image_url":"http://up.boohee.cn/house/u/food_library/category/1_v1.png","sub_category_count":3,"sub_categories":[{"id":13,"name":"包装谷薯","image_url":null},{"id":11,"name":"天然谷薯","image_url":null},{"id":12,"name":"谷薯制品","image_url":null}],"description":null},{"id":2,"name":"肉蛋类","image_url":"http://up.boohee.cn/house/u/food_library/category/2_v1.png","sub_category_count":3,"sub_categories":[{"id":22,"name":"白肉","image_url":null},{"id":21,"name":"红肉","image_url":null},{"id":23,"name":"蛋类","image_url":null}],"description":null},{"id":3,"name":"大豆及制品","image_url":"http://up.boohee.cn/house/u/food_library/category/3_v1.png","sub_category_count":1,"sub_categories":[{"id":31,"name":"大豆及制品","image_url":null}],"description":null},{"id":4,"name":"蔬菜菌藻类","image_url":"http://up.boohee.cn/house/u/food_library/category/4_v1.png","sub_category_count":2,"sub_categories":[{"id":42,"name":"菌藻","image_url":null},{"id":41,"name":"蔬菜","image_url":null}],"description":null},{"id":5,"name":"水果类","image_url":"http://up.boohee.cn/house/u/food_library/category/5_v1.png","sub_category_count":1,"sub_categories":[{"id":51,"name":"水果","image_url":null}],"description":null},{"id":6,"name":"奶类","image_url":"http://up.boohee.cn/house/u/food_library/category/6_v1.png","sub_category_count":5,"sub_categories":[{"id":65,"name":"其它","image_url":null},{"id":64,"name":"奶粉","image_url":null},{"id":63,"name":"奶酪","image_url":null},{"id":62,"name":"酸奶","image_url":null},{"id":61,"name":"鲜奶","image_url":null}],"description":null},{"id":7,"name":"油脂类","image_url":"http://up.boohee.cn/house/u/food_library/category/7_v1.png","sub_category_count":2,"sub_categories":[{"id":72,"name":"动物油","image_url":null},{"id":71,"name":"植物油","image_url":null}],"description":null},{"id":8,"name":"坚果类","image_url":"http://up.boohee.cn/house/u/food_library/category/8_v1.png","sub_category_count":1,"sub_categories":[{"id":81,"name":"坚果种子","image_url":null}],"description":null},{"id":9,"name":"调味品","image_url":"http://up.boohee.cn/house/u/food_library/category/9_v1.png","sub_category_count":4,"sub_categories":[{"id":94,"name":"糖和蜂蜜","image_url":null},{"id":91,"name":"调味料","image_url":null},{"id":92,"name":"调味酱","image_url":null},{"id":93,"name":"酱菜","image_url":null}],"description":null},{"id":10,"name":"饮料类","image_url":"http://up.boohee.cn/house/u/food_library/category/10_v1.png","sub_category_count":8,"sub_categories":[{"id":108,"name":"乳饮料","image_url":null},{"id":104,"name":"含糖饮料","image_url":null},{"id":107,"name":"固体饮料","image_url":null},{"id":106,"name":"无糖咖啡","image_url":null},{"id":105,"name":"无糖茶饮","image_url":null},{"id":102,"name":"碳酸饮料","image_url":null},{"id":103,"name":"纯果蔬汁饮料","image_url":null},{"id":101,"name":"酒精饮料","image_url":null}],"description":null},{"id":11,"name":"零食，点心及冷饮","image_url":"http://up.boohee.cn/house/u/food_library/category/11_v1.png","sub_category_count":3,"sub_categories":[{"id":113,"name":"冷饮","image_url":null},{"id":112,"name":"点心","image_url":null},{"id":111,"name":"零食","image_url":null}],"description":null},{"id":12,"name":"其它","image_url":"http://up.boohee.cn/house/u/food_library/category/12_v1.png","sub_category_count":2,"sub_categories":[{"id":121,"name":"药食","image_url":null},{"id":122,"name":"营养保健","image_url":null}],"description":null}]
+     * item_id : 7593
+     * title : 休息日早餐
+     * card_image : http://one.boohee.cn/food/2016/10/24/9E6BF442-E85F-45BE-979A-EECF4FB3E51B.jpg?imageView2/2/w/640
+     * publisher : 言言言言西早
+     * publisher_avatar : http://wx.qlogo.cn/mmopen/6KA0QCGAlFyyuUrfHc706G1E3WEqzPELYfib14IBq2PibW8UFGiaGFAdNAAwSKBhRd1MBnficMD4KvYsNsGTRZuy9W0Ss0PDnxQ8/0
+     * description :
+     * content_type : 5
+     * type : food_card
+     * like_ct : 61
      */
 
-    private List<GroupBean> group;
+    private List<FeedsBean> feeds;
 
-    public int getGroup_count() {
-        return group_count;
+    public String getPage() {
+        return page;
     }
 
-    public void setGroup_count(int group_count) {
-        this.group_count = group_count;
+    public void setPage(String page) {
+        this.page = page;
     }
 
-    public List<GroupBean> getGroup() {
-        return group;
+    public int getTotal_pages() {
+        return total_pages;
     }
 
-    public void setGroup(List<GroupBean> group) {
-        this.group = group;
+    public void setTotal_pages(int total_pages) {
+        this.total_pages = total_pages;
     }
 
-    public static class GroupBean {
-        private String kind;
-        /**
-         * id : 1
-         * name : 主食类
-         * image_url : http://up.boohee.cn/house/u/food_library/category/1_v1.png
-         * sub_category_count : 3
-         * sub_categories : [{"id":13,"name":"包装谷薯","image_url":null},{"id":11,"name":"天然谷薯","image_url":null},{"id":12,"name":"谷薯制品","image_url":null}]
-         * description : null
-         */
+    public List<FeedsBean> getFeeds() {
+        return feeds;
+    }
 
-        private List<CategoriesBean> categories;
+    public void setFeeds(List<FeedsBean> feeds) {
+        this.feeds = feeds;
+    }
 
-        public String getKind() {
-            return kind;
+    public static class FeedsBean {
+        private int item_id;
+        private String title;
+        private String card_image;
+        private String publisher;
+        private String publisher_avatar;
+        private String description;
+        private int content_type;
+        private String type;
+        private int like_ct;
+
+        public int getItem_id() {
+            return item_id;
         }
 
-        public void setKind(String kind) {
-            this.kind = kind;
+        public void setItem_id(int item_id) {
+            this.item_id = item_id;
         }
 
-        public List<CategoriesBean> getCategories() {
-            return categories;
+        public String getTitle() {
+            return title;
         }
 
-        public void setCategories(List<CategoriesBean> categories) {
-            this.categories = categories;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
-        public static class CategoriesBean {
-            private int id;
-            private String name;
-            private String image_url;
-            private int sub_category_count;
-            private Object description;
-            /**
-             * id : 13
-             * name : 包装谷薯
-             * image_url : null
-             */
-
-            private List<SubCategoriesBean> sub_categories;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getImage_url() {
-                return image_url;
-            }
-
-            public void setImage_url(String image_url) {
-                this.image_url = image_url;
-            }
-
-            public int getSub_category_count() {
-                return sub_category_count;
-            }
-
-            public void setSub_category_count(int sub_category_count) {
-                this.sub_category_count = sub_category_count;
-            }
-
-            public Object getDescription() {
-                return description;
-            }
-
-            public void setDescription(Object description) {
-                this.description = description;
-            }
-
-            public List<SubCategoriesBean> getSub_categories() {
-                return sub_categories;
-            }
-
-            public void setSub_categories(List<SubCategoriesBean> sub_categories) {
-                this.sub_categories = sub_categories;
-            }
-
-            public static class SubCategoriesBean {
-                private int id;
-                private String name;
-                private Object image_url;
-
-                public int getId() {
-                    return id;
-                }
-
-                public void setId(int id) {
-                    this.id = id;
-                }
-
-                public String getName() {
-                    return name;
-                }
-
-                public void setName(String name) {
-                    this.name = name;
-                }
-
-                public Object getImage_url() {
-                    return image_url;
-                }
-
-                public void setImage_url(Object image_url) {
-                    this.image_url = image_url;
-                }
-            }
+        public String getCard_image() {
+            return card_image;
         }
+
+        public void setCard_image(String card_image) {
+            this.card_image = card_image;
+        }
+
+        public String getPublisher() {
+            return publisher;
+        }
+
+        public void setPublisher(String publisher) {
+            this.publisher = publisher;
+        }
+
+        public String getPublisher_avatar() {
+            return publisher_avatar;
+        }
+
+        public void setPublisher_avatar(String publisher_avatar) {
+            this.publisher_avatar = publisher_avatar;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public int getContent_type() {
+            return content_type;
+        }
+
+        public void setContent_type(int content_type) {
+            this.content_type = content_type;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public int getLike_ct() {
+            return like_ct;
+        }
+
+        public void setLike_ct(int like_ct) {
+            this.like_ct = like_ct;
+        }
+
     }
 }
