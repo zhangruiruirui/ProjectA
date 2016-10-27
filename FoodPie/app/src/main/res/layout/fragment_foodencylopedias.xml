@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#dedede"
     android:layout_height="match_parent">
-    <ImageButton
+    <include layout="@layout/custom_title"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@mipmap/img_home_bg"
+        android:orientation="vertical"
+        android:layout_height="212dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/ic_home_logo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#f8f9f8"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:textSize="20dp"
+            android:text="@string/queryFood_name"/>
+        <LinearLayout
+            android:layout_width="360dp"
+            android:id="@+id/foodElLl"
+            android:layout_gravity="center"
+            android:background="#f8faf8"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_height="45dp" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:background="@mipmap/ic_home_search"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_name"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:textColor="#f9b390"
+                android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnFood"/>
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="饮食分析"
+            android:background="@mipmap/ic_home_analysis"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
