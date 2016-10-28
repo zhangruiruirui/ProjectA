@@ -48,56 +48,14 @@ public class HomePagerFragment extends BaseFragment {
         pullHomePager.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
-                GsonRequest<HomeDataBean> gsonRequest = new GsonRequest<HomeDataBean>(HomeDataBean.class, uri, new Response.Listener<HomeDataBean>() {
-                    @Override
-                    public void onResponse(HomeDataBean response) {
-                        for (int i = 0; i < response.getFeeds().size(); i++) {
-                            HomePagerBean bean = new HomePagerBean();
-                            bean.setImgUrl(response.getFeeds().get(i).getCard_image());
-                            bean.setTitle(response.getFeeds().get(i).getTitle());
-                            bean.setTitle(response.getFeeds().get(i).getPublisher());
-                            arrayList.add(bean);
-
-                        }
-                        homePagerAdapter.setArrayList(arrayList);
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                VolleySingleton.getInstance().addRequest(gsonRequest);
-                pullHomePager.setAdapter(homePagerAdapter);
+                arrayList.clear();
 
 
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
-                GsonRequest<HomeDataBean> gsonRequest = new GsonRequest<HomeDataBean>(HomeDataBean.class, uri, new Response.Listener<HomeDataBean>() {
-                    @Override
-                    public void onResponse(HomeDataBean response) {
-                        for (int i = 0; i < response.getFeeds().size(); i++) {
-                            HomePagerBean bean = new HomePagerBean();
-                            bean.setImgUrl(response.getFeeds().get(i).getCard_image());
-                            bean.setTitle(response.getFeeds().get(i).getTitle());
-                            bean.setTitle(response.getFeeds().get(i).getPublisher());
-                            arrayList.add(bean);
 
-                        }
-                        homePagerAdapter.setArrayList(arrayList);
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                VolleySingleton.getInstance().addRequest(gsonRequest);
-                pullHomePager.setAdapter(homePagerAdapter);
 
 
             }
@@ -112,7 +70,28 @@ public class HomePagerFragment extends BaseFragment {
         homePagerAdapter = new HomePagerAdapter(getContext());
         pullHomePager.setAdapter(homePagerAdapter);
         arrayList = new ArrayList<>();
+        GsonRequest<HomeDataBean> gsonRequest = new GsonRequest<HomeDataBean>(HomeDataBean.class, uri, new Response.Listener<HomeDataBean>() {
+            @Override
+            public void onResponse(HomeDataBean response) {
+                for (int i = 0; i < response.getFeeds().size(); i++) {
+                    HomePagerBean bean = new HomePagerBean();
+                    bean.setImgUrl(response.getFeeds().get(i).getCard_image());
+                    bean.setTitle(response.getFeeds().get(i).getTitle());
+                    bean.setTitle(response.getFeeds().get(i).getPublisher());
+                    arrayList.add(bean);
 
+                }
+                homePagerAdapter.setArrayList(arrayList);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleton.getInstance().addRequest(gsonRequest);
+        pullHomePager.setAdapter(homePagerAdapter);
 
 
 
