@@ -28,8 +28,8 @@ public class FoodEncyclopediasFragment extends BaseFragment {
     private String uri = "http://food.boohee.com/fb/v1/categories/list";
     ArrayList<FoodEncyclopediasBean> arrayList;
     private FoodEncyclopediasAdapter adapter = new FoodEncyclopediasAdapter();
-    private FoodEncyclopediasAdapter mAdapter =new FoodEncyclopediasAdapter();
-    private FoodEncyclopediasAdapter nAdapter =new FoodEncyclopediasAdapter();
+    private FoodEncyclopediasAdapter mAdapter = new FoodEncyclopediasAdapter();
+    private FoodEncyclopediasAdapter nAdapter = new FoodEncyclopediasAdapter();
 
     private GridView gvPacks;
     private GridView gvHot;
