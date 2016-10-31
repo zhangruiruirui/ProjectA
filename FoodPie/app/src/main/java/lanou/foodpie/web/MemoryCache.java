@@ -1,4 +1,4 @@
-package lanou.foodpie.gson;
+package lanou.foodpie.web;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;

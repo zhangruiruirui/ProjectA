@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 import lanou.foodpie.R;
 import lanou.foodpie.bean.FoodEncyclopediasBean;
-import lanou.foodpie.gson.MyApp;
-import lanou.foodpie.gson.VolleySingleton;
+import lanou.foodpie.abs.MyApp;
+import lanou.foodpie.web.VolleySingleton;
 
 /**
  * Created by ZhangRui on 16/10/28.
@@ -21,9 +21,8 @@ public class FoodEncyclopediasAdapter extends BaseAdapter {
     ArrayList<FoodEncyclopediasBean> arrayList;
 
     public void setArrayList(ArrayList<FoodEncyclopediasBean> arrayList) {
-
         this.arrayList = arrayList;
-
+         notifyDataSetChanged();
     }
 
     @Override

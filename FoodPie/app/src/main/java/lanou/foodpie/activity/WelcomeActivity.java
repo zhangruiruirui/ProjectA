@@ -17,6 +17,7 @@ public class WelcomeActivity extends AbsBaseActivity implements View.OnClickList
     private TextView welcomeTv;
     private ImageView welcomeIv;
     private boolean timerisclosed = false;
+    private CountDownTimer timer;
 
     @Override
     protected int getLayout() {
@@ -33,7 +34,7 @@ public class WelcomeActivity extends AbsBaseActivity implements View.OnClickList
 
     @Override
     protected void initData() {
-        final CountDownTimer timer = new CountDownTimer(6000, 1000) {
+        timer = new CountDownTimer(6000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 welcomeTv.setText((millisUntilFinished / 1000) + "s");
@@ -41,23 +42,27 @@ public class WelcomeActivity extends AbsBaseActivity implements View.OnClickList
 
             @Override
             public void onFinish() {
-                if (timerisclosed == false) {
-                    Intent intent = new Intent();
-                    intent.setClass(WelcomeActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                if (!timerisclosed) {
+                    finishThis();
                 }
             }
-        };timer.start();
+        };
+        timer.start();
 
 
     }
 
-    @Override
-    public void onClick(View v) {
+    private void finishThis(){
         Intent intent = new Intent();
         intent.setClass(WelcomeActivity.this, MainActivity.class);
         startActivity(intent);
+        timer.cancel();
+        finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+      finishThis();
         timerisclosed = !timerisclosed;
 
     }

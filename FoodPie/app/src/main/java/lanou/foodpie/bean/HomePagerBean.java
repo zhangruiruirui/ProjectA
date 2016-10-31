@@ -7,23 +7,9 @@ public class HomePagerBean {
     String title;
     String imgUrl;
     private String card_image;
-    private String publisher;
+    private String link;
 
-    public String getCard_image() {
-        return card_image;
-    }
 
-    public void setCard_image(String card_image) {
-        this.card_image = card_image;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
 
     public String getTitle() {
         return title;
@@ -39,5 +25,21 @@ public class HomePagerBean {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getCard_image() {
+        return card_image;
+    }
+
+    public void setCard_image(String card_image) {
+        this.card_image = card_image;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

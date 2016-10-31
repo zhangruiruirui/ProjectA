@@ -1,10 +1,5 @@
 package lanou.foodpie.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.android.volley.Response;
@@ -17,8 +12,8 @@ import lanou.foodpie.R;
 import lanou.foodpie.adpter.FoodEncyclopediasAdapter;
 import lanou.foodpie.bean.FoodDataBean;
 import lanou.foodpie.bean.FoodEncyclopediasBean;
-import lanou.foodpie.gson.GsonRequest;
-import lanou.foodpie.gson.VolleySingleton;
+import lanou.foodpie.web.GsonRequest;
+import lanou.foodpie.web.VolleySingleton;
 
 /**
  * Created by ZhangRui on 16/10/21.
@@ -30,17 +25,13 @@ public class FoodEncyclopediasFragment extends BaseFragment {
     private FoodEncyclopediasAdapter adapter = new FoodEncyclopediasAdapter();
     private FoodEncyclopediasAdapter mAdapter = new FoodEncyclopediasAdapter();
     private FoodEncyclopediasAdapter nAdapter = new FoodEncyclopediasAdapter();
-
     private GridView gvPacks;
     private GridView gvHot;
     private GridView gvChain;
-
-
     @Override
     protected int getLayout() {
         return R.layout.fragment_foodencylopedias;
     }
-
     @Override
     protected void initView() {
         gvChain = bindView(R.id.packsGv);
@@ -50,9 +41,7 @@ public class FoodEncyclopediasFragment extends BaseFragment {
         adapter = new FoodEncyclopediasAdapter();
         mAdapter = new FoodEncyclopediasAdapter();
         nAdapter = new FoodEncyclopediasAdapter();
-
     }
-
     @Override
     protected void initData() {
         GsonRequest<FoodDataBean> gsonrequest = new GsonRequest<FoodDataBean>(FoodDataBean.class, uri,
@@ -61,10 +50,8 @@ public class FoodEncyclopediasFragment extends BaseFragment {
                     public void onResponse(FoodDataBean response) {
                         for (int j = 0; j < 3; j++) {
                             ArrayList<FoodEncyclopediasBean> foodTextBeen = new ArrayList<>();
-
                             for (int i = 0; i < response.getGroup().get(j).getCategories().size(); i++) {
                                 FoodEncyclopediasBean bean = new FoodEncyclopediasBean();
-
                                 bean.setName(response.getGroup().get(j).getCategories().get(i).getName());
                                 bean.setImageUrl(response.getGroup().get(j).getCategories().get(i).getImage_url());
                                 foodTextBeen.add(bean);

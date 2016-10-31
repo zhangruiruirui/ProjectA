@@ -20,7 +20,6 @@ public class MainActivity extends AbsBaseActivity {
     private RadioButton change;
     private RadioGroup rgMain;
     private FrameLayout mainFram;
-    private FragmentTransaction transaction;
     private FragmentManager manager;
     private FoodEncyclopediasFragment foodFragment;
     private ToEatFragment toeatFragment;
@@ -50,7 +49,7 @@ public class MainActivity extends AbsBaseActivity {
         foodFragment = new FoodEncyclopediasFragment();
         manager = getSupportFragmentManager();
         foodRb.setSelected(true);
-        transaction = manager.beginTransaction();
+        FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.frameMain, foodFragment);
         transaction.commit();
 
@@ -58,7 +57,7 @@ public class MainActivity extends AbsBaseActivity {
         rgMain.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                transaction = manager.beginTransaction();
+                FragmentTransaction transaction = manager.beginTransaction();
 
                 switch (checkedId) {
                     case R.id.rbFood:

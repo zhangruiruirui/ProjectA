@@ -1,6 +1,5 @@
-package lanou.foodpie.gson;
+package lanou.foodpie.web;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
@@ -11,9 +10,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-import java.util.concurrent.SynchronousQueue;
-
 import lanou.foodpie.R;
+import lanou.foodpie.abs.MyApp;
 
 /**
  * Created by ChenFengYao on 2016/10/24.
@@ -70,13 +68,13 @@ public class VolleySingleton {
             }else {
                 //图片请求成功
                 mImageView.setImageBitmap(bitmap);
-                //添加动画效果
-                AlphaAnimation alphaAnimation =
-                        new AlphaAnimation(0,1f);
-                alphaAnimation.setDuration(5000);
-                mImageView.setAnimation(alphaAnimation);
-
-                alphaAnimation.start();
+//                //添加动画效果
+//                AlphaAnimation alphaAnimation =
+//                        new AlphaAnimation(0,1f);
+//                alphaAnimation.setDuration(5000);
+//                mImageView.setAnimation(alphaAnimation);
+//
+//                alphaAnimation.start();
             }
         }
 
