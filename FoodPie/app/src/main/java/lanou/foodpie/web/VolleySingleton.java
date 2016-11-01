@@ -64,7 +64,7 @@ public class VolleySingleton {
             Bitmap bitmap = response.getBitmap();
             if (bitmap == null){
                 //图片还在请求中
-                mImageView.setImageResource(R.mipmap.ic_launcher);
+                mImageView.setImageResource(R.mipmap.img_home_evaluating);
             }else {
                 //图片请求成功
                 mImageView.setImageBitmap(bitmap);

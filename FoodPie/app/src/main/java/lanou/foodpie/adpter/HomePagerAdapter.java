@@ -47,11 +47,11 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        VolleySingleton.getInstance().getImage
-                (arrayList.get(position).getCard_image(),holder.ivHomeData);
-
-        holder.tvItemHome.setText(arrayList.get(position).getTitle());
-//        Log.d("response", arrayList.get(position).getTitle());
+        //TODO
+        VolleySingleton.getInstance().getImage(arrayList.get(position).getCard_image(),holder.cardIv);
+        holder.titleTv.setText(arrayList.get(position).getTitle());
+        holder.typeTv.setText(arrayList.get(position).getType());
+        holder.descriptionTv.setText(arrayList.get(position).getDescription());
 
 
     }
@@ -67,16 +67,19 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private  TextView tvItemHome;
-        private  ImageView ivItemHome;
-        private  ImageView IvHomeDatas;
-        private  ImageView ivHomeData;
+
+
+        private final ImageView cardIv;
+        private final TextView titleTv;
+        private final TextView typeTv;
+        private final TextView descriptionTv;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            tvItemHome = (TextView) itemView.findViewById(R.id.tvItemHome);
-            ivItemHome = (ImageView) itemView.findViewById(R.id.ivItemHome);
-            IvHomeDatas = (ImageView) itemView.findViewById(R.id.homeDatasIv);
-            ivHomeData = (ImageView) itemView.findViewById(R.id.homeDataIv);
+            cardIv = (ImageView) itemView.findViewById(R.id.cardIv);
+            titleTv = (TextView) itemView.findViewById(R.id.titleTv);
+            typeTv = (TextView) itemView.findViewById(R.id.typeTv);
+            descriptionTv = (TextView) itemView.findViewById(R.id.descriptionTv);
         }
     }
 }

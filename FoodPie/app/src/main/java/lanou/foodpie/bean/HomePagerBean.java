@@ -4,12 +4,10 @@ package lanou.foodpie.bean;
  * Created by dllo on 16/10/26.
  */
 public class HomePagerBean {
-    String title;
-    String imgUrl;
+    private String title;
     private String card_image;
-    private String link;
-
-
+    private String description;
+    private String type;
 
     public String getTitle() {
         return title;
@@ -17,14 +15,6 @@ public class HomePagerBean {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public String getCard_image() {
@@ -35,11 +25,19 @@ public class HomePagerBean {
         this.card_image = card_image;
     }
 
-    public String getLink() {
-        return link;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
