@@ -35,7 +35,7 @@ public class HomePagerFragment extends BaseFragment {
     private StaggeredGridLayoutManager manager;
     private int page = 2;
     private HomePagerAdapter homePagerAdapter;
-
+    private EndLessOnScrollListener endLessOnScrollListener;
     @Override
     protected void initData() {
         arrayList = new ArrayList<>();
@@ -44,20 +44,10 @@ public class HomePagerFragment extends BaseFragment {
         manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         rcHomePager.setLayoutManager(manager);
         rcHomePager.setAdapter(homePagerAdapter);
-        rcHomePager.addOnScrollListener(new EndLessOnScrollListener(manager) {
+        rcHomePager.addOnScrollListener(endLessOnScrollListener = new EndLessOnScrollListener(manager) {
             @Override
             protected void onLoadMore(int curentPage) {
                 srHome.setRefreshing(true);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
                 getGsonRequest("http://food.boohee.com/fb/v1/feeds/category_feed?page="+page+"&category=1&per=10");
                 page++;
                 srHome.setRefreshing(false);
@@ -69,7 +59,7 @@ public class HomePagerFragment extends BaseFragment {
             public void onRefresh() {
                 arrayList.clear();
                 getGsonRequest(uri);
-                srHome.setRefreshing(false);
+
             }
         });
     }
@@ -96,11 +86,10 @@ public class HomePagerFragment extends BaseFragment {
                     bean.setType(response.getFeeds().get(i).getType());
                     bean.setDescription(response.getFeeds().get(i).getDescription());
                     arrayList.add(bean);
-
-
-
                 }
                 homePagerAdapter.setArrayList(arrayList);
+                endLessOnScrollListener.resetPreviousTotal();
+                srHome.setRefreshing(false);
 
             }
         }, new Response.ErrorListener() {

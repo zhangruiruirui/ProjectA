@@ -15,9 +15,9 @@ import lanou.foodpie.bean.KnowledgeBean;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
- * Created by dllo on 16/10/26.
+ * Created by ZhangRui on 16/10/26.
  */
-public class KnowledgeAdapter extends RecyclerView.Adapter<KnowledgeAdapter.ViewHolder>{
+public class KnowledgeAdapter extends RecyclerView.Adapter<KnowledgeAdapter.ViewHolder> {
     Context context;
     ArrayList<KnowledgeBean> arrayList;
 
@@ -32,18 +32,23 @@ public class KnowledgeAdapter extends RecyclerView.Adapter<KnowledgeAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_know,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_know, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        VolleySingleton.getInstance().getImage((arrayList.get(position).getImages().get(0)),holder.imagesIv);
         holder.sourceTv.setText(arrayList.get(position).getSource());
         holder.tailTv.setText(arrayList.get(position).getTail());
         holder.titleTv.setText(arrayList.get(position).getTitle());
         holder.typeTv.setText(arrayList.get(position).getType());
+        if (arrayList.get(position).getImages().size() > 0) {
+            VolleySingleton.getInstance().getImage((arrayList.get(position).getImages().get(0)), holder.imagesIv);
+
+        }else {
+            holder.imagesIv.setImageResource(R.mipmap.img_default_food_thumbnail);
+        }
 
     }
 
@@ -54,11 +59,11 @@ public class KnowledgeAdapter extends RecyclerView.Adapter<KnowledgeAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView typeTv;
-        private final TextView sourceTv;
-        private final TextView titleTv;
-        private final TextView tailTv;
-        private final ImageView imagesIv;
+        private TextView typeTv;
+        private TextView sourceTv;
+        private TextView titleTv;
+        private TextView tailTv;
+        private ImageView imagesIv;
 
         public ViewHolder(View itemView) {
             super(itemView);

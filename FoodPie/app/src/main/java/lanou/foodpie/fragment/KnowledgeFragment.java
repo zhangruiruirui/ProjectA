@@ -32,28 +32,19 @@ public class KnowledgeFragment extends BaseFragment {
     private KnowledgeAdapter knowledgeAdapter;
     private ArrayList<KnowledgeBean> arrayList;
     private StaggeredGridLayoutManager manager;
+    private EndLessOnScrollListener endLessOnScrollListener;
     @Override
     protected void initData() {
         arrayList = new ArrayList<>();
-        knowledgeAdapter =  new KnowledgeAdapter(getContext());
+        knowledgeAdapter = new KnowledgeAdapter(getContext());
         getGsonRequest(url);
         manager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         knowRc.setLayoutManager(manager);
         knowRc.setAdapter(knowledgeAdapter);
-        knowRc.addOnScrollListener(new EndLessOnScrollListener(manager) {
+        knowRc.addOnScrollListener(endLessOnScrollListener = new EndLessOnScrollListener(manager) {
             @Override
             protected void onLoadMore(int curentPage) {
                 knowSr.setRefreshing(true);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
                 getGsonRequest("http://food.boohee.com/fb/v1/feeds/category_feed?page="+page+"&category=3&per=10");
                 page++;
                 knowSr.setRefreshing(false);
@@ -87,7 +78,6 @@ public class KnowledgeFragment extends BaseFragment {
         GsonRequest<KnowledgeDataBean> gsonRequest = new GsonRequest<KnowledgeDataBean>(KnowledgeDataBean.class, uri, new Response.Listener<KnowledgeDataBean>() {
             @Override
             public void onResponse(KnowledgeDataBean response) {
-
                 for (int i = 0; i < response.getFeeds().size(); i++) {
                     KnowledgeBean bean = new KnowledgeBean();
                     bean.setImages(response.getFeeds().get(i).getImages());
@@ -96,11 +86,10 @@ public class KnowledgeFragment extends BaseFragment {
                     bean.setTail(response.getFeeds().get(i).getTail());
                     bean.setSource(response.getFeeds().get(i).getSource());
                     arrayList.add(bean);
-
-
-
                 }
                 knowledgeAdapter.setArrayList(arrayList);
+                endLessOnScrollListener.resetPreviousTotal();
+                knowSr.setRefreshing(false);
 
             }
         }, new Response.ErrorListener() {

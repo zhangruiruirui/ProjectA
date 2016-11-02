@@ -16,9 +16,9 @@ import lanou.foodpie.bean.EvaluatingDataBean;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
- * Created by dllo on 16/10/26.
+ * Created by ZhangRui on 16/10/26.
  */
-public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.ViewHolder>{
+public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.ViewHolder> {
     Context context;
     ArrayList<EvaluatingDataBean> arrayList;
 
@@ -33,14 +33,14 @@ public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_evaluating,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_evaluating, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        VolleySingleton.getInstance().getImage(arrayList.get(position).getBackground(),holder.backIv);
+        VolleySingleton.getInstance().getImage(arrayList.get(position).getBackground(), holder.backIv);
         holder.sourceTv.setText(arrayList.get(position).getSource());
         holder.titleTv.setText(arrayList.get(position).getTitle());
         holder.tailTv.setText(arrayList.get(position).getTail());

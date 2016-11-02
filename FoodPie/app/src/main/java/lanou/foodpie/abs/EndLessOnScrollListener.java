@@ -9,7 +9,6 @@ import android.util.Log;
  * Created by ZhangRui on 16/10/31.
  */
 public abstract class EndLessOnScrollListener extends RecyclerView.OnScrollListener {
-
     private RecyclerView.LayoutManager layoutManager;
     private int curentPage = 0;
 
@@ -27,6 +26,11 @@ public abstract class EndLessOnScrollListener extends RecyclerView.OnScrollListe
 
     public EndLessOnScrollListener(RecyclerView.LayoutManager layoutManager) {
         this.layoutManager = layoutManager;
+    }
+
+    //重置
+    public void resetPreviousTotal(){
+        previousTotal = 0;
     }
 
     //是否上拉数据
@@ -54,25 +58,32 @@ public abstract class EndLessOnScrollListener extends RecyclerView.OnScrollListe
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
         visibleItemCount = recyclerView.getChildCount();
-        Log.d("EndLessOnScrollListener", "visibleItemCount:" + visibleItemCount);
+//        Log.d("EndLessOnScrollListener", "visibleItemCount:" + visibleItemCount);
         getNumbers();
         if (loading) {
+
             if (totallItemCount > previousTotal) {
                 //说明加载结束
                 loading = false;
+//                Log.d("Sysout", "加载结束");
                 previousTotal = totallItemCount;
 
+            }else {
+//                Log.d("Sysout", "totallItemCount:" + totallItemCount);
+//                Log.d("Sysout", "previousTotal:" + previousTotal);
             }
         }
 //        Log.d("EndLessOnScrollListener", "loading:" + loading);
 //        Log.d("EndLessOnScrollListener", "totallItemCount:" + totallItemCount);
 //        Log.d("EndLessOnScrollListener", "visibleItemCount:" + visibleItemCount);
 //        Log.d("EndLessOnScrollListener", "firstVisibleItem:" + firstVisibleItem);
-        Log.d("EndLessOnScrollListener", "visibleItemCount:" + !loading);
+//        Log.d("EndLessOnScrollListener", "visibleItemCount:" + !loading);
+      //  Log.d("Sysout", "loading:" + loading);
         if (!loading && totallItemCount - visibleItemCount <= firstVisibleItem) {
             curentPage++;
             onLoadMore(curentPage);
             loading = true;
+//            Log.d("EndLessOnScrollListener", "visibleItemCount:" + !loading);
         }
 
 
