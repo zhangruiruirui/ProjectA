@@ -3,8 +3,6 @@ package lanou.foodpie.fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -18,6 +16,7 @@ import lanou.foodpie.adpter.KnowledgeAdapter;
 import lanou.foodpie.bean.KnowledgeBean;
 import lanou.foodpie.bean.KnowledgeDataBean;
 import lanou.foodpie.web.GsonRequest;
+import lanou.foodpie.constant.UrlWeb;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
@@ -28,7 +27,7 @@ public class KnowledgeFragment extends BaseFragment {
     private SwipeRefreshLayout knowSr;
     private RecyclerView knowRc;
     private int page = 1;
-    private String url = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=3&per=10";
+    private String url = UrlWeb.urlKnow;
     private KnowledgeAdapter knowledgeAdapter;
     private ArrayList<KnowledgeBean> arrayList;
     private StaggeredGridLayoutManager manager;

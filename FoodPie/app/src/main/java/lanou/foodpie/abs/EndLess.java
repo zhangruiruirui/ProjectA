@@ -2,50 +2,77 @@ package lanou.foodpie.abs;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 /**
  * Created by ZhangRui on 16/10/31.
  */
 public abstract class EndLess extends RecyclerView.OnScrollListener {
-    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView.LayoutManager layoutManager;
     private int curentPage = 0;
-    // 已经加载的item数量
-    private int totalItemCount;
-    // 主要用来存储上一个totalLitem
+
+    //已经加载的Item数量
+    private int totallItemCount;
+
+    //主要用来 存储上一个totallItemCount
     private int previousTotal = 0;
-    // 在屏幕上可见的item数量
+
+    //在欧屏上可见的item数量
     private int visibleItemCount;
-    // 在屏幕上可见的Item中的第一个
-    private int firstVisbleItem;
-    // 是否上啦数据
+
+    //在屏幕上可见的额item中的第一个
+    private int firstVisibleItem;
+
+    public EndLess(RecyclerView.LayoutManager layoutManager) {
+        this.layoutManager = layoutManager;
+    }
+
+    //是否上拉数据
     private boolean loading = true;
 
-    public EndLess(LinearLayoutManager linearLayoutManager) {
-        this.linearLayoutManager = linearLayoutManager;
+//    public EndLessOnScrollListener(LinearLayoutManager linearLayoutManager) {
+//        this.linearLayoutManager = linearLayoutManager;
+//    }
+
+//    public EndLessOnScrollListener(StaggeredGridLayoutManager staggeredGridLayoutManager) {
+//        this.staggeredGridLayoutManager = staggeredGridLayoutManager;
+//    }
+
+    private void getNumbers() {
+        totallItemCount = layoutManager.getItemCount();
+        if (layoutManager instanceof LinearLayoutManager) {
+            firstVisibleItem = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+        }else if(layoutManager instanceof StaggeredGridLayoutManager){
+            int[] firstVisibleItemPositions = ((StaggeredGridLayoutManager)layoutManager).findFirstVisibleItemPositions(null);
+            firstVisibleItem = firstVisibleItemPositions[0];
+        }
     }
 
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
         visibleItemCount = recyclerView.getChildCount();
-        totalItemCount = linearLayoutManager.getItemCount();
-        firstVisbleItem = linearLayoutManager.findFirstVisibleItemPosition();
-
+        getNumbers();
         if (loading) {
-            if (totalItemCount > previousTotal) {
+            if (totallItemCount > previousTotal) {
                 //说明加载结束
                 loading = false;
-                previousTotal = totalItemCount;
+                previousTotal = totallItemCount;
 
             }
         }
-        if (!loading && totalItemCount - visibleItemCount <= firstVisbleItem) {
+//        Log.d("EndLessOnScrollListener", "loading:" + loading);
+//        Log.d("EndLessOnScrollListener", "totallItemCount:" + totallItemCount);
+//        Log.d("EndLessOnScrollListener", "visibleItemCount:" + visibleItemCount);
+//        Log.d("EndLessOnScrollListener", "firstVisibleItem:" + firstVisibleItem);
+        if (!loading && totallItemCount - visibleItemCount <= firstVisibleItem) {
             curentPage++;
             onLoadMores(curentPage);
             loading = true;
         }
+
+
     }
 
     protected abstract void onLoadMores(int curentPage);
-
 }

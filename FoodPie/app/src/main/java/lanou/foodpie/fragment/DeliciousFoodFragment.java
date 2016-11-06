@@ -1,6 +1,5 @@
 package lanou.foodpie.fragment;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -9,17 +8,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import lanou.foodpie.R;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.abs.EndLessOnScrollListener;
 import lanou.foodpie.adpter.DeliciousFoodAdapter;
-import lanou.foodpie.adpter.KnowledgeAdapter;
-import lanou.foodpie.bean.DeliciousFoodBean;
 import lanou.foodpie.bean.DeliciousFoodDataBean;
-import lanou.foodpie.bean.KnowledgeBean;
-import lanou.foodpie.bean.KnowledgeDataBean;
 import lanou.foodpie.web.GsonRequest;
+import lanou.foodpie.constant.UrlWeb;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
@@ -30,9 +27,9 @@ public class DeliciousFoodFragment extends BaseFragment {
     private SwipeRefreshLayout deliciousSr;
     private RecyclerView deliciousRv;
     private int page = 1;
-    private String url = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=4&per=10";
+    private String url = UrlWeb.urlDelicious;
     private DeliciousFoodAdapter deliciousFoodAdapter;
-    private ArrayList<DeliciousFoodBean> arrayList;
+    private List<DeliciousFoodDataBean.FeedsBean> arrayList;
     private StaggeredGridLayoutManager manager;
     private EndLessOnScrollListener endLessOnScrollListener;
 
@@ -81,18 +78,7 @@ public class DeliciousFoodFragment extends BaseFragment {
         GsonRequest<DeliciousFoodDataBean> gsonRequest = new GsonRequest<DeliciousFoodDataBean>(DeliciousFoodDataBean.class, uri, new Response.Listener<DeliciousFoodDataBean>() {
             @Override
             public void onResponse(DeliciousFoodDataBean response) {
-
-                for (int i = 0; i < response.getFeeds().size(); i++) {
-                    DeliciousFoodBean bean = new DeliciousFoodBean();
-                    bean.setImages(response.getFeeds().get(i).getImages());
-                    bean.setTitle(response.getFeeds().get(i).getTitle());
-                    bean.setType(response.getFeeds().get(i).getType());
-                    bean.setTail(response.getFeeds().get(i).getTail());
-                    bean.setSource(response.getFeeds().get(i).getSource());
-                    arrayList.add(bean);
-
-
-                }
+                arrayList = response.getFeeds();
                 deliciousFoodAdapter.setArrayList(arrayList);
                 endLessOnScrollListener.resetPreviousTotal();
                 deliciousSr.setRefreshing(false);

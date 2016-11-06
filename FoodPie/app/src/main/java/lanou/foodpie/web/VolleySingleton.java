@@ -80,7 +80,7 @@ public class VolleySingleton {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            mImageView.setImageResource(R.mipmap.ic_launcher);
+            mImageView.setImageResource(R.mipmap.img_default_food_thumbnail);
         }
     }
 

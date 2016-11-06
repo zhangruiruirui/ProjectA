@@ -7,7 +7,16 @@ public class HomePagerBean {
     private String title;
     private String card_image;
     private String description;
+    private String publisher_avatar;
     private String type;
+
+    public String getPublisher_avatar() {
+        return publisher_avatar;
+    }
+
+    public void setPublisher_avatar(String publisher_avatar) {
+        this.publisher_avatar = publisher_avatar;
+    }
 
     public String getTitle() {
         return title;

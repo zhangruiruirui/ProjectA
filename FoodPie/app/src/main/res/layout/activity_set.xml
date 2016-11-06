@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ebeceb"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#ffffffff"
+        android:layout_height="40dp">
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:id="@+id/setBtn"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/ic_back_dark"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:text="设置"/>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#020202">
+    </ImageView>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/setLl"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:text="清除缓存"/>
+
+</LinearLayout>
+
+    <ImageView
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="0.1dp"
+        android:background="#9b9b9b">
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:text="给我们提个建议"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="0.1dp"
+        android:background="#9b9b9b">
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:text="评个分吧"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="0.1dp"
+        android:background="#9b9b9b">
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:text="将食物派分享给朋友"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="0.1dp"
+        android:background="#9b9b9b">
+    </ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="食物派版本号: "
+        android:layout_gravity="center"/>
+</LinearLayout>

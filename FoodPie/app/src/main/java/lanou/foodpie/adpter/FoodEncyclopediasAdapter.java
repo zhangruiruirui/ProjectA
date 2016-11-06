@@ -5,37 +5,44 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import lanou.foodpie.R;
-import lanou.foodpie.bean.FoodEncyclopediasBean;
+import lanou.foodpie.bean.FoodDataBean;
 import lanou.foodpie.abs.MyApp;
+import lanou.foodpie.constant.OnClickInterface;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
  * Created by ZhangRui on 16/10/28.
  */
 public class FoodEncyclopediasAdapter extends BaseAdapter {
-    ArrayList<FoodEncyclopediasBean> arrayList;
 
-    public void setArrayList(ArrayList<FoodEncyclopediasBean> arrayList) {
-        this.arrayList = arrayList;
-         notifyDataSetChanged();
+    private FoodDataBean foodDataBean;
+    private int kind = 2;
+    private OnClickInterface onClickInterface;
+
+    public void setFoodDataBean(int kind, FoodDataBean foodDataBean) {
+        this.foodDataBean = foodDataBean;
+        this.kind = kind;
+    }
+
+    public void setOnClickInterface(OnClickInterface onClickInterface) {
+        this.onClickInterface = onClickInterface;
     }
 
     @Override
     public int getCount() {
-        int count = arrayList == null? 0 :arrayList.size();
-        //   Log.d("GridViewAdapter", "count:" + count);
-        return arrayList == null? 0 :arrayList.size();
+        return foodDataBean.getGroup().get(kind).getCategories() == null? 0 :foodDataBean.getGroup().get(kind).getCategories().size();
 
     }
 
     @Override
     public Object getItem(int position) {
-        return arrayList.get(position);
+        return foodDataBean.getGroup().get(kind).getCategories();
 
     }
 
@@ -45,35 +52,42 @@ public class FoodEncyclopediasAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        MyyViewHolder viewHolder = null;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        MyViewHolder viewHolder = null;
         if (convertView == null ){
             convertView = LayoutInflater.from(MyApp.getContext()).inflate(R.layout.item_foodencyclopedias,parent,false);
-            viewHolder = new MyyViewHolder(convertView);
+            viewHolder = new MyViewHolder(convertView);
 
             convertView.setTag(viewHolder);
         }else{
-            viewHolder = (MyyViewHolder) convertView.getTag();
+            viewHolder = (MyViewHolder) convertView.getTag();
         }
-        viewHolder.textView.setText(arrayList.get(position).getName());
-        VolleySingleton.getInstance().getImage(arrayList.get(position).getImageUrl(),viewHolder.imageView);
-
-
-
+        viewHolder.foodItemTv.setText(foodDataBean.
+                getGroup().get(kind).getCategories().get(position).getName());
+        VolleySingleton.getInstance().getImage(foodDataBean.
+                getGroup().get(kind).getCategories().get(position).getImage_url(),viewHolder.foodItemIv);
+        viewHolder.foodLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickInterface.onClickFood(foodDataBean.getGroup().get(kind).getKind(),
+                foodDataBean.getGroup().get(kind).getCategories().get(position).getId(),
+                foodDataBean.getGroup().get(kind).getCategories().get(position).getName());
+            }
+        });
         return convertView;
     }
 
 
-    private class MyyViewHolder {
+    private class MyViewHolder {
+        private final ImageView foodItemIv;
+        private final TextView foodItemTv;
+        private final LinearLayout foodLl;
 
+        public MyViewHolder(View convertView) {
 
-        private final ImageView imageView;
-        private final TextView textView;
-
-        public MyyViewHolder(View convertView) {
-
-            imageView = (ImageView) convertView.findViewById(R.id.foodItemIv);
-            textView = (TextView) convertView.findViewById(R.id.foodItemTv);
+            foodItemIv = (ImageView) convertView.findViewById(R.id.foodItemIv);
+            foodItemTv = (TextView) convertView.findViewById(R.id.foodItemTv);
+            foodLl = (LinearLayout) convertView.findViewById(R.id.foodLl);
 
         }
     }

@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:padding="5dp"
     android:layout_height="250dp">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@mipmap/ic_launcher"
         android:id="@+id/cardIv"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/publisher_avatarIv"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:text="aa"
         android:id="@+id/titleTv"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:text="bb"
         android:id="@+id/descriptionTv"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:text="cc"
         android:id="@+id/typeTv"/>
 
 
-</LinearLayout>
+</RelativeLayout>

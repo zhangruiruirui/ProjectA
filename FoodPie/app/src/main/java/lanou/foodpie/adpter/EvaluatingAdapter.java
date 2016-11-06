@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import lanou.foodpie.R;
 import lanou.foodpie.bean.EvaluatingBean;
-import lanou.foodpie.bean.EvaluatingDataBean;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
@@ -20,9 +19,9 @@ import lanou.foodpie.web.VolleySingleton;
  */
 public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.ViewHolder> {
     Context context;
-    ArrayList<EvaluatingDataBean> arrayList;
+    private List<EvaluatingBean.FeedsBean> arrayList;
 
-    public void setArrayList(ArrayList<EvaluatingDataBean> arrayList) {
+    public void setArrayList(List<EvaluatingBean.FeedsBean> arrayList) {
         this.arrayList = arrayList;
         notifyDataSetChanged();
     }

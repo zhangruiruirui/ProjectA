@@ -29,6 +29,9 @@
         </activity>
         <activity android:name=".activity.MainActivity"
             android:theme="@style/CustomTitle"/>
+        <activity android:name=".activity.SetActivity"
+            android:theme="@style/CustomTitle"/>
+        <activity android:name=".activity.FoodEncyclopediasActivity"/>
     </application>
 
 </manifest>

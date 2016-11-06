@@ -10,7 +10,8 @@ import android.view.WindowManager;
 /**
  * Created by ZhangRui on 16/10/21.
  * Activity的基类
- * 在这个Activity的基类中: 定制一些Activity的代码书写流程, 精简一下findViewById和Intent的, 将手机电量信号状态栏去掉等等的应用共同属性
+ * 在这个Activity的基类中: 定制一些Activity的代码书写流程,
+ * 精简一下findViewById和Intent的, 将手机电量信号状态栏去掉等等的应用共同属性
  */
 public abstract class AbsBaseActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
     protected abstract void intiViews();
     // 初始化数据, 基本上就是 拉去网络数据
     protected abstract void initData();
-    // 简化findViewById 省去墙砖的过程
+    // 简化findViewById 省去强转的过程
     protected <T extends View> T bindView (int id) {
         return (T) findViewById(id);
 

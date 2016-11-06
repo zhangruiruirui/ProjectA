@@ -9,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import lanou.foodpie.R;
 import lanou.foodpie.bean.DeliciousFoodBean;
+import lanou.foodpie.bean.DeliciousFoodDataBean;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
@@ -19,9 +21,9 @@ import lanou.foodpie.web.VolleySingleton;
  */
 public class DeliciousFoodAdapter extends RecyclerView.Adapter<DeliciousFoodAdapter.ViewHolder> {
     Context context;
-    ArrayList<DeliciousFoodBean> arrayList;
+    List<DeliciousFoodDataBean.FeedsBean> arrayList;
 
-    public void setArrayList(ArrayList<DeliciousFoodBean> arrayList) {
+    public void setArrayList(List<DeliciousFoodDataBean.FeedsBean> arrayList) {
         this.arrayList = arrayList;
         notifyDataSetChanged();
     }
