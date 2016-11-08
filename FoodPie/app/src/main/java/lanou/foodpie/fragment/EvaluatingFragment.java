@@ -13,6 +13,7 @@ import java.util.List;
 import lanou.foodpie.R;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.abs.EndLess;
+import lanou.foodpie.abs.EndLessOnScrollListener;
 import lanou.foodpie.adpter.EvaluatingAdapter;
 import lanou.foodpie.bean.EvaluatingBean;
 import lanou.foodpie.web.GsonRequest;
@@ -27,25 +28,27 @@ public class EvaluatingFragment extends BaseFragment {
     private SwipeRefreshLayout evaluatingSr;
     private RecyclerView evaluatingRv;
     private String url = UrlWeb.urlEva;
-    private List<EvaluatingBean.FeedsBean> feeds;
+    private String urlPage = UrlWeb.urlEvaPage;
+    private String urlPages = UrlWeb.urlEvaPages;
+//    private List<EvaluatingBean.FeedsBean> feeds;
     private EvaluatingAdapter adapter;
     private LinearLayoutManager manager;
-    private int page = 2;
-//    private EndLessOnScrollListener endLessOnScrollListener
+    private int page = 1;
+    private EndLessOnScrollListener endLessOnScrollListener;
 
     @Override
     protected void initData() {
-        feeds = new ArrayList<>();
+//        feeds = new ArrayList<>();
         adapter = new EvaluatingAdapter(getContext());
-        getGsonRequest(url);
+        getGsonRequest(url,true);
         evaluatingRv.setAdapter(adapter);
         manager = new LinearLayoutManager(getContext());
         evaluatingRv.setLayoutManager(manager);
-        evaluatingRv.addOnScrollListener( new EndLess(manager) {
+        evaluatingRv.addOnScrollListener( endLessOnScrollListener = new EndLessOnScrollListener(manager) {
             @Override
-            protected void onLoadMores(int curentPage) {
+            protected void onLoadMore(int curentPage) {
                 evaluatingSr.setRefreshing(true);
-                getGsonRequest("http://food.boohee.com/fb/v1/feeds/category_feed?page="+page+"&category=2&per=10");
+                getGsonRequest(urlPage+page+urlPages,false);
                 page++;
                 evaluatingSr.setRefreshing(false);
             }
@@ -53,8 +56,8 @@ public class EvaluatingFragment extends BaseFragment {
         evaluatingSr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-             feeds.clear();
-                getGsonRequest(url);
+//                feeds.clear();
+                getGsonRequest(url,true);
                 evaluatingSr.setRefreshing(false);
             }
         });
@@ -70,14 +73,16 @@ public class EvaluatingFragment extends BaseFragment {
     protected int getLayout() {
         return R.layout.fragment_evaluating;
     }
-    protected void getGsonRequest(String url) {
-        GsonRequest<EvaluatingBean> gsonRequest = new GsonRequest<EvaluatingBean>(EvaluatingBean.class, url, new Response.Listener<EvaluatingBean>() {
+    protected void getGsonRequest(String url, final boolean isRefresh) {
+        GsonRequest<EvaluatingBean> gsonRequest = new
+                GsonRequest<EvaluatingBean>(EvaluatingBean.class, url, new
+                Response.Listener<EvaluatingBean>() {
             @Override
             public void onResponse(EvaluatingBean response) {
-                feeds = response.getFeeds();
-                adapter.setArrayList(feeds);
-//                endLessOnScrollListener.resetPreviousTotal();
-//                evaluatingSr.setRefreshing(false);
+//               response.getFeeds();
+                adapter.setArrayList(response.getFeeds(),isRefresh);
+                endLessOnScrollListener.resetPreviousTotal();
+                evaluatingSr.setRefreshing(false);
 
             }
         }, new Response.ErrorListener() {
@@ -91,4 +96,3 @@ public class EvaluatingFragment extends BaseFragment {
 
     }
 }
-

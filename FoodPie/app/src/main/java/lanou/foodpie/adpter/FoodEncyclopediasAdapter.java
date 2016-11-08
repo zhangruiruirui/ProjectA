@@ -8,12 +8,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import lanou.foodpie.R;
 import lanou.foodpie.bean.FoodDataBean;
 import lanou.foodpie.abs.MyApp;
-import lanou.foodpie.constant.OnClickInterface;
+import lanou.foodpie.onclickItemlistener.OnClickFoodSor;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
@@ -23,15 +21,15 @@ public class FoodEncyclopediasAdapter extends BaseAdapter {
 
     private FoodDataBean foodDataBean;
     private int kind = 2;
-    private OnClickInterface onClickInterface;
+    private OnClickFoodSor onClickFoodSor;
 
     public void setFoodDataBean(int kind, FoodDataBean foodDataBean) {
         this.foodDataBean = foodDataBean;
         this.kind = kind;
     }
 
-    public void setOnClickInterface(OnClickInterface onClickInterface) {
-        this.onClickInterface = onClickInterface;
+    public void setonClickFoodSor(OnClickFoodSor OnClickFoodSor) {
+        this.onClickFoodSor = OnClickFoodSor;
     }
 
     @Override
@@ -69,7 +67,7 @@ public class FoodEncyclopediasAdapter extends BaseAdapter {
         viewHolder.foodLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickInterface.onClickFood(foodDataBean.getGroup().get(kind).getKind(),
+                onClickFoodSor.onClickFood(foodDataBean.getGroup().get(kind).getKind(),
                 foodDataBean.getGroup().get(kind).getCategories().get(position).getId(),
                 foodDataBean.getGroup().get(kind).getCategories().get(position).getName());
             }
@@ -79,9 +77,9 @@ public class FoodEncyclopediasAdapter extends BaseAdapter {
 
 
     private class MyViewHolder {
-        private final ImageView foodItemIv;
-        private final TextView foodItemTv;
-        private final LinearLayout foodLl;
+        private  ImageView foodItemIv;
+        private  TextView foodItemTv;
+        private  LinearLayout foodLl;
 
         public MyViewHolder(View convertView) {
 

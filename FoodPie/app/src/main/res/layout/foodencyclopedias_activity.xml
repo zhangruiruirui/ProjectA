@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:id="@+id/popTv"
             android:drawableRight="@mipmap/ic_back_dark"
             android:text="营养素排序"/>
 

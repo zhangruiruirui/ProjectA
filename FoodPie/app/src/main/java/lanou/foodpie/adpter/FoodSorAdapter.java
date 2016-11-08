@@ -1,6 +1,8 @@
 package lanou.foodpie.adpter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +14,15 @@ import java.util.List;
 
 import lanou.foodpie.R;
 import lanou.foodpie.bean.FoodSortBean;
+import lanou.foodpie.constant.CircleDrawable;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
  * Created by ZhangRui on 16/11/5.
  */
 public class FoodSorAdapter extends BaseAdapter {
-    List<FoodSortBean.FoodsBean> foodsBeen;
-    Context context;
+    private List<FoodSortBean.FoodsBean> foodsBeen;
+    private Context context;
 
     public FoodSorAdapter(Context context) {
         this.context = context;
@@ -64,9 +67,9 @@ public class FoodSorAdapter extends BaseAdapter {
 
     private class MyViewHolder {
 
-        private final ImageView iconIv;
-        private final TextView typeTv;
-        private final TextView nameTv;
+        private  ImageView iconIv;
+        private  TextView typeTv;
+        private  TextView nameTv;
 
         public MyViewHolder(View convertView) {
             iconIv = (ImageView) convertView.findViewById(R.id.iconIv);

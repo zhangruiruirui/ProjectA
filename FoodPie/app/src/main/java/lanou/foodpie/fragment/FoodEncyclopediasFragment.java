@@ -11,7 +11,7 @@ import lanou.foodpie.R;
 import lanou.foodpie.activity.FoodEncyclopediasActivity;
 import lanou.foodpie.adpter.FoodEncyclopediasAdapter;
 import lanou.foodpie.bean.FoodDataBean;
-import lanou.foodpie.constant.OnClickInterface;
+import lanou.foodpie.onclickItemlistener.OnClickFoodSor;
 import lanou.foodpie.web.GsonRequest;
 import lanou.foodpie.constant.UrlWeb;
 import lanou.foodpie.web.VolleySingleton;
@@ -20,7 +20,7 @@ import lanou.foodpie.web.VolleySingleton;
  * Created by ZhangRui on 16/10/21.
  * 食物百科Fragment
  */
-public class FoodEncyclopediasFragment extends BaseFragment implements OnClickInterface {
+public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFoodSor {
     private String uri = UrlWeb.urlFood;
     private FoodEncyclopediasAdapter packsAdapter = new FoodEncyclopediasAdapter();
     private FoodEncyclopediasAdapter hotAdapter = new FoodEncyclopediasAdapter();
@@ -45,9 +45,9 @@ public class FoodEncyclopediasFragment extends BaseFragment implements OnClickIn
         hotAdapter = new FoodEncyclopediasAdapter();
         chainAdapter = new FoodEncyclopediasAdapter();
 
-        packsAdapter.setOnClickInterface(this);
-        hotAdapter.setOnClickInterface(this);
-        chainAdapter.setOnClickInterface(this);
+        packsAdapter.setonClickFoodSor(this);
+        hotAdapter.setonClickFoodSor(this);
+        chainAdapter.setonClickFoodSor(this);
     }
     @Override
     protected void initData() {

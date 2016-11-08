@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lanou.foodpie.R;
@@ -16,13 +17,18 @@ import lanou.foodpie.web.VolleySingleton;
 
 /**
  * Created by ZhangRui on 16/10/26.
+ * 逛吃,测评界面适配器
  */
 public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.ViewHolder> {
-    Context context;
+    private Context context;
     private List<EvaluatingBean.FeedsBean> arrayList;
 
-    public void setArrayList(List<EvaluatingBean.FeedsBean> arrayList) {
-        this.arrayList = arrayList;
+    public void setArrayList(List<EvaluatingBean.FeedsBean> arrayList, boolean isRefresh) {
+        if (isRefresh || arrayList == null) {
+            this.arrayList = arrayList;
+        }else {
+            this.arrayList.addAll(arrayList);
+        }
         notifyDataSetChanged();
     }
 
@@ -53,10 +59,10 @@ public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final ImageView backIv;
-        private final TextView sourceTv;
-        private final TextView titleTv;
-        private final TextView tailTv;
+        private ImageView backIv;
+        private TextView sourceTv;
+        private TextView titleTv;
+        private TextView tailTv;
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * MainActivity的适配器
  */
 public class MyAdapter extends FragmentPagerAdapter {
-    ArrayList<Fragment> fragments;
+    private ArrayList<Fragment> fragments;
 
     public MyAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {
         super(fm);

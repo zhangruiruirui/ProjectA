@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * 逛吃适配器
  */
 public class ToEatAdapter extends FragmentPagerAdapter {
-    ArrayList<Fragment> fragments;
-    String titles[] = {"首页", "测评", "知识", "美食"};
+    private ArrayList<Fragment> fragments;
+    private String titles[] = {"首页", "测评", "知识", "美食"};
 
     public void setFragments(ArrayList<Fragment> fragments) {
         this.fragments = fragments;

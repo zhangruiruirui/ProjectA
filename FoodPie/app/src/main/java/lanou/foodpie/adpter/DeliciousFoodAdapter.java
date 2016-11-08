@@ -8,23 +8,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lanou.foodpie.R;
-import lanou.foodpie.bean.DeliciousFoodBean;
 import lanou.foodpie.bean.DeliciousFoodDataBean;
+import lanou.foodpie.bean.EvaluatingBean;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
  * Created by ZhangRui on 16/10/26.
  */
 public class DeliciousFoodAdapter extends RecyclerView.Adapter<DeliciousFoodAdapter.ViewHolder> {
-    Context context;
-    List<DeliciousFoodDataBean.FeedsBean> arrayList;
+    private Context context;
+    private List<DeliciousFoodDataBean.FeedsBean> arrayList;
 
-    public void setArrayList(List<DeliciousFoodDataBean.FeedsBean> arrayList) {
-        this.arrayList = arrayList;
+    public void setArrayList(List<DeliciousFoodDataBean.FeedsBean> arrayList, boolean isRefresh) {
+        if (isRefresh || arrayList == null) {
+            this.arrayList = arrayList;
+        } else {
+            this.arrayList.addAll(arrayList);
+        }
         notifyDataSetChanged();
     }
 
@@ -48,7 +51,7 @@ public class DeliciousFoodAdapter extends RecyclerView.Adapter<DeliciousFoodAdap
         if (arrayList.get(position).getImages().size() > 0) {
             VolleySingleton.getInstance().getImage((arrayList.get(position).getImages().get(0)), holder.imagesIv);
 
-        }else {
+        } else {
             holder.imagesIv.setImageResource(R.mipmap.img_default_food_thumbnail);
         }
     }

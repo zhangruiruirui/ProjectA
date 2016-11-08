@@ -32,6 +32,8 @@
         <activity android:name=".activity.SetActivity"
             android:theme="@style/CustomTitle"/>
         <activity android:name=".activity.FoodEncyclopediasActivity"/>
+        <activity android:name=".activity.HomePagerDetailsActivity"/>
+        <activity android:name=".fragment.HomePagerLinkActivity"/>
     </application>
 
 </manifest>

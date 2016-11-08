@@ -7,13 +7,10 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import java.util.ArrayList;
-
 import lanou.foodpie.R;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.abs.EndLessOnScrollListener;
 import lanou.foodpie.adpter.KnowledgeAdapter;
-import lanou.foodpie.bean.KnowledgeBean;
 import lanou.foodpie.bean.KnowledgeDataBean;
 import lanou.foodpie.web.GsonRequest;
 import lanou.foodpie.constant.UrlWeb;
@@ -28,15 +25,16 @@ public class KnowledgeFragment extends BaseFragment {
     private RecyclerView knowRc;
     private int page = 1;
     private String url = UrlWeb.urlKnow;
+    private String urlPage = UrlWeb.urlKnowPage;
+    private String urlPages = UrlWeb.urlKnowPages;
     private KnowledgeAdapter knowledgeAdapter;
-    private ArrayList<KnowledgeBean> arrayList;
     private StaggeredGridLayoutManager manager;
     private EndLessOnScrollListener endLessOnScrollListener;
     @Override
     protected void initData() {
-        arrayList = new ArrayList<>();
+//        arrayList = new ArrayList<>();
         knowledgeAdapter = new KnowledgeAdapter(getContext());
-        getGsonRequest(url);
+        getGsonRequest(url,true);
         manager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         knowRc.setLayoutManager(manager);
         knowRc.setAdapter(knowledgeAdapter);
@@ -44,7 +42,7 @@ public class KnowledgeFragment extends BaseFragment {
             @Override
             protected void onLoadMore(int curentPage) {
                 knowSr.setRefreshing(true);
-                getGsonRequest("http://food.boohee.com/fb/v1/feeds/category_feed?page="+page+"&category=3&per=10");
+                getGsonRequest(urlPage+page+urlPages,false);
                 page++;
                 knowSr.setRefreshing(false);
             }
@@ -53,8 +51,8 @@ public class KnowledgeFragment extends BaseFragment {
         knowSr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                arrayList.clear();
-                getGsonRequest(url);
+//                arrayList.clear();
+                getGsonRequest(url,true);
                 knowSr.setRefreshing(false);
             }
         });
@@ -73,24 +71,17 @@ public class KnowledgeFragment extends BaseFragment {
     protected int getLayout() {
         return R.layout.fragment_knowledge;
     }
-    protected void getGsonRequest(String uri) {
-        GsonRequest<KnowledgeDataBean> gsonRequest = new GsonRequest<KnowledgeDataBean>(KnowledgeDataBean.class, uri, new Response.Listener<KnowledgeDataBean>() {
+    protected void getGsonRequest(String uri,final boolean isRefresh) {
+        GsonRequest<KnowledgeDataBean> gsonRequest = new
+                GsonRequest<KnowledgeDataBean>(KnowledgeDataBean.class, uri, new
+                Response.Listener<KnowledgeDataBean>() {
             @Override
             public void onResponse(KnowledgeDataBean response) {
-                for (int i = 0; i < response.getFeeds().size(); i++) {
-                    KnowledgeBean bean = new KnowledgeBean();
-                    bean.setImages(response.getFeeds().get(i).getImages());
-                    bean.setTitle(response.getFeeds().get(i).getTitle());
-                    bean.setType(response.getFeeds().get(i).getType());
-                    bean.setTail(response.getFeeds().get(i).getTail());
-                    bean.setSource(response.getFeeds().get(i).getSource());
-                    arrayList.add(bean);
-                }
-                knowledgeAdapter.setArrayList(arrayList);
+                knowledgeAdapter.setArrayList(response.getFeeds(),isRefresh);
                 endLessOnScrollListener.resetPreviousTotal();
                 knowSr.setRefreshing(false);
+                }
 
-            }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

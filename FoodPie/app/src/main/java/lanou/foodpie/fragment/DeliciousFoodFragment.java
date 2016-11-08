@@ -28,16 +28,17 @@ public class DeliciousFoodFragment extends BaseFragment {
     private RecyclerView deliciousRv;
     private int page = 1;
     private String url = UrlWeb.urlDelicious;
+    private String urlPage = UrlWeb.urlDeliciousPage;
+    private String urlPages = UrlWeb.urlDeliciousPages;
     private DeliciousFoodAdapter deliciousFoodAdapter;
-    private List<DeliciousFoodDataBean.FeedsBean> arrayList;
     private StaggeredGridLayoutManager manager;
     private EndLessOnScrollListener endLessOnScrollListener;
 
     @Override
     protected void initData() {
-        arrayList = new ArrayList<>();
+//        arrayList = new ArrayList<>();
         deliciousFoodAdapter = new DeliciousFoodAdapter(getContext());
-        getGsonRequest(url);
+        getGsonRequest(url,true);
         manager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         deliciousRv.setLayoutManager(manager);
         deliciousRv.setAdapter(deliciousFoodAdapter);
@@ -45,7 +46,7 @@ public class DeliciousFoodFragment extends BaseFragment {
             @Override
             protected void onLoadMore(int curentPage) {
                 deliciousSr.setRefreshing(true);
-                getGsonRequest("http://food.boohee.com/fb/v1/feeds/category_feed?page=" + page + "&category=4&per=10");
+                getGsonRequest(urlPage+page+urlPages,false);
                 page++;
                 deliciousSr.setRefreshing(false);
             }
@@ -54,8 +55,8 @@ public class DeliciousFoodFragment extends BaseFragment {
         deliciousSr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                arrayList.clear();
-                getGsonRequest(url);
+//                arrayList.clear();
+                getGsonRequest(url,true);
 
             }
         });
@@ -74,12 +75,14 @@ public class DeliciousFoodFragment extends BaseFragment {
         return R.layout.fragment_deliciousfood;
     }
 
-    protected void getGsonRequest(String uri) {
-        GsonRequest<DeliciousFoodDataBean> gsonRequest = new GsonRequest<DeliciousFoodDataBean>(DeliciousFoodDataBean.class, uri, new Response.Listener<DeliciousFoodDataBean>() {
+    protected void getGsonRequest(String url, final boolean isRefresh) {
+        GsonRequest<DeliciousFoodDataBean> gsonRequest = new
+                GsonRequest<DeliciousFoodDataBean>(DeliciousFoodDataBean.class, url, new
+                Response.Listener<DeliciousFoodDataBean>() {
             @Override
             public void onResponse(DeliciousFoodDataBean response) {
-                arrayList = response.getFeeds();
-                deliciousFoodAdapter.setArrayList(arrayList);
+//                arrayList = response.getFeeds();
+                deliciousFoodAdapter.setArrayList(response.getFeeds(),isRefresh);
                 endLessOnScrollListener.resetPreviousTotal();
                 deliciousSr.setRefreshing(false);
 
