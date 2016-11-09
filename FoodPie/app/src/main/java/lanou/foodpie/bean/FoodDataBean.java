@@ -1,5 +1,6 @@
 package lanou.foodpie.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -127,7 +128,7 @@ public class FoodDataBean {
                 this.sub_categories = sub_categories;
             }
 
-            public static class SubCategoriesBean {
+            public static class SubCategoriesBean implements Serializable{
                 private int id;
                 private String name;
                 private Object image_url;

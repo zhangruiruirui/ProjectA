@@ -2,8 +2,10 @@ package lanou.foodpie.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,7 +22,9 @@ import java.util.List;
 import lanou.foodpie.R;
 import lanou.foodpie.abs.AbsBaseActivity;
 import lanou.foodpie.adpter.FoodSorAdapter;
-import lanou.foodpie.adpter.SearchAdapter;
+import lanou.foodpie.adpter.PopAdapter;
+import lanou.foodpie.adpter.PopAdapterAll;
+import lanou.foodpie.bean.FoodDataBean;
 import lanou.foodpie.bean.FoodSortBean;
 import lanou.foodpie.bean.SearchBean;
 import lanou.foodpie.constant.UrlWeb;
@@ -42,6 +46,8 @@ public class FoodEncyclopediasActivity extends AbsBaseActivity implements View.O
     private TextView popTv;
     private PopupWindow popupWindow;
     private RecyclerView popRv;
+    private TextView popAllTv;
+    private List<FoodDataBean.GroupBean.CategoriesBean.SubCategoriesBean> categories;
 
     @Override
     protected int getLayout() {
@@ -53,37 +59,43 @@ public class FoodEncyclopediasActivity extends AbsBaseActivity implements View.O
         foodLv = bindView(R.id.foodLv);
         nameTv = bindView(R.id.nameTv);
         popTv = bindView(R.id.popTv);
-        setClick(this,popTv);
-
+        popAllTv = bindView(R.id.popAllTv);
+        setClick(this, popTv, popAllTv);
         foodSorAdapter = new FoodSorAdapter(this);
         Intent intent = getIntent();
         kind = intent.getStringExtra("kind");
         name = intent.getStringExtra("name");
         nameTv.setText(name);
         id = String.valueOf(intent.getIntExtra("id", 0));
-
+        nameTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
     private void initSearch() {
-        final SearchAdapter searchAdapter = new SearchAdapter(this);
-        GridLayoutManager manager = new GridLayoutManager(this,3);
+        final PopAdapter popAdapter = new PopAdapter(this);
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
         popRv.setLayoutManager(manager);
         GsonRequest<SearchBean> gsonRequest = new
-                GsonRequest<SearchBean>(SearchBean.class, url, new Response.Listener<SearchBean>() {
-            @Override
-            public void onResponse(SearchBean response) {
-                searchAdapter.setBeanList(response.getTypes());
-                popRv.setAdapter(searchAdapter);
+                GsonRequest<SearchBean>(SearchBean.class, url, new
+                Response.Listener<SearchBean>() {
+                    @Override
+                    public void onResponse(SearchBean response) {
+                        popAdapter.setBeanList(response.getTypes());
+                        popRv.setAdapter(popAdapter);
 
-            }
-        }, new Response.ErrorListener() {
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
 
-        }
-    });
+            }
+        });
         VolleySingleton.getInstance().addRequest(gsonRequest);
     }
 
@@ -113,26 +125,69 @@ public class FoodEncyclopediasActivity extends AbsBaseActivity implements View.O
 
     @Override
     public void onClick(View v) {
-        // 获取自定义布局文件的视图
-        View popupWindow_view = getLayoutInflater().inflate(R.layout.foodencyclopedias_popwindow, null,false);
-        popRv = (RecyclerView)popupWindow_view.findViewById(R.id.popRv);
-        // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
-        popupWindow = new PopupWindow(popupWindow_view, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT, true);
-        // 这里是位置显示方式
-        popupWindow.showAsDropDown(popTv, 0, 0);
+        switch (v.getId()) {
+            case R.id.popTv:
+                Log.d("FoodEncyclopediasActivi", "aa");
+                // 获取自定义布局文件的视图
+                View popupWindowView = getLayoutInflater().inflate
+                        (R.layout.foodencyclopedias_popwindow, null, false);
+                popRv = (RecyclerView) popupWindowView.findViewById(R.id.popRv);
+                // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
+                popupWindow = new PopupWindow
+                        (popupWindowView, RelativeLayout.LayoutParams.MATCH_PARENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT, true);
+                // 这里是位置显示方式方向
+                popupWindow.showAsDropDown(v, 0, 0);
 
-        // 点击其他地方消失
-        popupWindow_view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (popupWindow != null && popupWindow.isShowing()) {
-                    popupWindow.dismiss();
-                    popupWindow = null;
-                }
-                return false;
-            }
-        });
-        initSearch();
+                // 点击其他地方消失
+                popupWindowView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (popupWindow != null && popupWindow.isShowing()) {
+                            popupWindow.dismiss();
+                            popupWindow = null;
+
+                        }
+                        return false;
+                    }
+                });
+                initSearch();
+                break;
+            case R.id.popAllTv:
+                Log.d("FoodEncyclopediasActivi", "aa");
+
+                // 获取自定义布局文件的视图
+                View popupWindowViewAll = getLayoutInflater().inflate
+                        (R.layout.foodencyclopedias_popwindowall, null, false);
+                RecyclerView popAllRv = (RecyclerView) popupWindowViewAll.findViewById(R.id.popAllRv);
+                PopAdapterAll popAdapterAll = new PopAdapterAll(this);
+                popAllRv.setAdapter(popAdapterAll);
+                LinearLayoutManager manager = new LinearLayoutManager(this);
+                popAllRv.setLayoutManager(manager);
+                categories = (List<FoodDataBean.GroupBean.CategoriesBean.SubCategoriesBean>)
+                        this.getIntent().getSerializableExtra("categories");
+                Log.d("FoodEncyclopediasActivi", "categories:" + categories);
+                popAdapterAll.setBeanList(categories);
+                // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
+                popupWindow = new PopupWindow
+                        (popupWindowViewAll, RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT, true);
+                // 这里是位置显示方式方向
+                popupWindow.showAsDropDown(popAllTv, 0, 0);
+                // 点击其他地方消失
+                popupWindowViewAll.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (popupWindow != null && popupWindow.isShowing()) {
+                            popupWindow.dismiss();
+                            popupWindow = null;
+                        }
+                        return false;
+                    }
+
+                });
+                break;
+        }
     }
 
 }

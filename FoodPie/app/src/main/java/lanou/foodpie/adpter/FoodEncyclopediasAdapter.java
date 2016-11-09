@@ -69,7 +69,9 @@ public class FoodEncyclopediasAdapter extends BaseAdapter {
             public void onClick(View v) {
                 onClickFoodSor.onClickFood(foodDataBean.getGroup().get(kind).getKind(),
                 foodDataBean.getGroup().get(kind).getCategories().get(position).getId(),
-                foodDataBean.getGroup().get(kind).getCategories().get(position).getName());
+                foodDataBean.getGroup().get(kind).getCategories().get(position).getName(),
+                foodDataBean.getGroup().get(kind).getCategories().get(position).getSub_categories());
+
             }
         });
         return convertView;

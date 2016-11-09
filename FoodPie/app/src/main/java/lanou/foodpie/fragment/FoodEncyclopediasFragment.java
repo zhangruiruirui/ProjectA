@@ -6,6 +6,9 @@ import android.widget.GridView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import java.io.Serializable;
+import java.util.List;
+
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.R;
 import lanou.foodpie.activity.FoodEncyclopediasActivity;
@@ -82,11 +85,12 @@ public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFo
     }
 
     @Override
-    public void onClickFood(String kind, int id, String name) {
+    public void onClickFood(String kind, int id, String name,List categories) {
         Intent intent = new Intent(getActivity(), FoodEncyclopediasActivity.class);
         intent.putExtra("kind", kind);
         intent.putExtra("id", id);
         intent.putExtra("name", name);
+        intent.putExtra("categories",(Serializable) categories);
         startActivity(intent);
     }
 }
