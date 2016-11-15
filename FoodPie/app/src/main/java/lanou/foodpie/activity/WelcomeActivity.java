@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.bmob.v3.Bmob;
 import lanou.foodpie.R;
 import lanou.foodpie.abs.AbsBaseActivity;
 
@@ -28,7 +29,8 @@ public class WelcomeActivity extends AbsBaseActivity implements View.OnClickList
     protected void intiViews() {
         welcomeTv = bindView(R.id.welcomeTv);
         welcomeIv = bindView(R.id.welcomeIv);
-        setClick(this,welcomeIv);
+        setClick(this, welcomeIv);
+
 
     }
 
@@ -52,7 +54,7 @@ public class WelcomeActivity extends AbsBaseActivity implements View.OnClickList
 
     }
 
-    private void finishThis(){
+    private void finishThis() {
         Intent intent = new Intent();
         intent.setClass(WelcomeActivity.this, MainActivity.class);
         startActivity(intent);
@@ -62,18 +64,13 @@ public class WelcomeActivity extends AbsBaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-      finishThis();
+        finishThis();
         timerisclosed = !timerisclosed;
 
     }
 
 
-
-
-
-
-
-    }
+}
 
 
 

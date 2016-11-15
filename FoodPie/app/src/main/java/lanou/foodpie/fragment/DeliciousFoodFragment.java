@@ -1,5 +1,6 @@
 package lanou.foodpie.fragment;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -13,8 +14,10 @@ import java.util.List;
 import lanou.foodpie.R;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.abs.EndLessOnScrollListener;
+import lanou.foodpie.activity.DeliciousActivity;
 import lanou.foodpie.adpter.DeliciousFoodAdapter;
 import lanou.foodpie.bean.DeliciousFoodDataBean;
+import lanou.foodpie.onclickItemlistener.OnClickDelicious;
 import lanou.foodpie.web.GsonRequest;
 import lanou.foodpie.constant.UrlWeb;
 import lanou.foodpie.web.VolleySingleton;
@@ -58,6 +61,14 @@ public class DeliciousFoodFragment extends BaseFragment {
 //                arrayList.clear();
                 getGsonRequest(url,true);
 
+            }
+        });
+        deliciousFoodAdapter.setOnClickDelicious(new OnClickDelicious() {
+            @Override
+            public void onClickDelicious(String link) {
+                Intent intent = new Intent(getActivity(), DeliciousActivity.class);
+                intent.putExtra("link",link);
+                startActivity(intent);
             }
         });
 

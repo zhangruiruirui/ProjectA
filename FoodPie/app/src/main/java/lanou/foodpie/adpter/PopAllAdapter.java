@@ -11,12 +11,11 @@ import java.util.List;
 
 import lanou.foodpie.R;
 import lanou.foodpie.bean.FoodDataBean;
-import lanou.foodpie.bean.SearchBean;
 
 /**
  * Created by ZhangRui on 16/11/9.
  */
-public class PopAdapterAll extends RecyclerView.Adapter<PopAdapterAll.ViewHolder>{
+public class PopAllAdapter extends RecyclerView.Adapter<PopAllAdapter.ViewHolder>{
     private Context context;
     private List<FoodDataBean.GroupBean.CategoriesBean.SubCategoriesBean> beanList;
 
@@ -25,7 +24,7 @@ public class PopAdapterAll extends RecyclerView.Adapter<PopAdapterAll.ViewHolder
         notifyDataSetChanged();
     }
 
-    public PopAdapterAll(Context context) {
+    public PopAllAdapter(Context context) {
         this.context = context;
     }
 

@@ -1,6 +1,7 @@
 package lanou.foodpie.activity;
 
 import android.content.Intent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ import lanou.foodpie.web.VolleySingleton;
 /**
  * Created by ZhangRui on 16/11/7.
  */
-public class HomePagerDetailsActivity extends AbsBaseActivity {
+public class HomePagerDetailsActivity extends AbsBaseActivity implements View.OnClickListener {
     private ImageView iconIv;
     private TextView backTv;
     private TextView shareTv;
@@ -24,6 +25,7 @@ public class HomePagerDetailsActivity extends AbsBaseActivity {
     private String likes;
     private String icon;
     private String images;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_homepagerdetails;
@@ -37,25 +39,30 @@ public class HomePagerDetailsActivity extends AbsBaseActivity {
         nameTv = bindView(R.id.nameTv);
         timeTv = bindView(R.id.timeTv);
         imagesIv = bindView(R.id.imagesIv);
-        likesIv = bindView(R.id.imagesIv);
+        likesIv = bindView(R.id.likesIv);
         likesTv = bindView(R.id.likesTv);
+        setClick(this,backTv);
+
         Intent intent = getIntent();
-        intent.getStringExtra("image");
-        intent.getStringExtra("headIcon");
-        intent.getStringExtra("name");
-        intent.getStringExtra("Like_ct");
+        images = intent.getStringExtra("image");
+        icon = intent.getStringExtra("headIcon");
+        name = intent.getStringExtra("name");
+        likes = intent.getStringExtra("Like_ct");
 
         nameTv.setText(name);
         likesTv.setText(likes);
-        VolleySingleton.getInstance().getImage(images,imagesIv);
-        VolleySingleton.getInstance().getImage(icon,iconIv);
-
-
+        VolleySingleton.getInstance().getImage(images, imagesIv);
+        VolleySingleton.getInstance().getImage(icon, iconIv);
 
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        onBackPressed();
     }
 }

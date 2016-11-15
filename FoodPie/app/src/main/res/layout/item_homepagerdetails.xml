@@ -3,14 +3,10 @@
     android:id="@+id/ll_homepage"
     android:orientation="vertical" android:layout_width="180dp"
     android:layout_height="200dp">
-
-    <!--<WebView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-
-    <!--</WebView>-->
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/linkIv"/>
+        android:id="@+id/linkIv"
+        android:layout_height="match_parent" />
+
+
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 import lanou.foodpie.R;
 import lanou.foodpie.bean.DeliciousFoodDataBean;
 import lanou.foodpie.bean.EvaluatingBean;
+import lanou.foodpie.onclickItemlistener.OnClickDelicious;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
@@ -21,6 +23,11 @@ import lanou.foodpie.web.VolleySingleton;
 public class DeliciousFoodAdapter extends RecyclerView.Adapter<DeliciousFoodAdapter.ViewHolder> {
     private Context context;
     private List<DeliciousFoodDataBean.FeedsBean> arrayList;
+    private OnClickDelicious onClickDelicious;
+
+    public void setOnClickDelicious(OnClickDelicious onClickDelicious) {
+        this.onClickDelicious = onClickDelicious;
+    }
 
     public void setArrayList(List<DeliciousFoodDataBean.FeedsBean> arrayList, boolean isRefresh) {
         if (isRefresh || arrayList == null) {
@@ -43,17 +50,23 @@ public class DeliciousFoodAdapter extends RecyclerView.Adapter<DeliciousFoodAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.sourceTv.setText(arrayList.get(position).getSource());
         holder.tailTv.setText(arrayList.get(position).getTail());
         holder.titleTv.setText(arrayList.get(position).getTitle());
-        holder.typeTv.setText(arrayList.get(position).getType());
         if (arrayList.get(position).getImages().size() > 0) {
             VolleySingleton.getInstance().getImage((arrayList.get(position).getImages().get(0)), holder.imagesIv);
 
         } else {
             holder.imagesIv.setImageResource(R.mipmap.img_default_food_thumbnail);
         }
+        holder.rL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String link = arrayList.get(position).getLink();
+                onClickDelicious.onClickDelicious(link);
+            }
+        });
     }
 
     @Override
@@ -63,15 +76,15 @@ public class DeliciousFoodAdapter extends RecyclerView.Adapter<DeliciousFoodAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView typeTv;
         private TextView sourceTv;
         private TextView titleTv;
         private TextView tailTv;
         private ImageView imagesIv;
+        private RelativeLayout rL;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            typeTv = (TextView) itemView.findViewById(R.id.typeTv);
+            rL = (RelativeLayout) itemView.findViewById(R.id.rL);
             sourceTv = (TextView) itemView.findViewById(R.id.sourceTv);
             titleTv = (TextView) itemView.findViewById(R.id.titleTv);
             tailTv = (TextView) itemView.findViewById(R.id.tailTv);

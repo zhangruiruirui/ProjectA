@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import lanou.foodpie.R;
 import lanou.foodpie.bean.EvaluatingBean;
+import lanou.foodpie.onclickItemlistener.OnClickEva;
 import lanou.foodpie.web.VolleySingleton;
 
 /**
@@ -22,6 +24,11 @@ import lanou.foodpie.web.VolleySingleton;
 public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.ViewHolder> {
     private Context context;
     private List<EvaluatingBean.FeedsBean> arrayList;
+    private OnClickEva onClickEva;
+
+    public void setOnClickEva(OnClickEva onClickEva) {
+        this.onClickEva = onClickEva;
+    }
 
     public void setArrayList(List<EvaluatingBean.FeedsBean> arrayList, boolean isRefresh) {
         if (isRefresh || arrayList == null) {
@@ -44,11 +51,19 @@ public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         VolleySingleton.getInstance().getImage(arrayList.get(position).getBackground(), holder.backIv);
         holder.sourceTv.setText(arrayList.get(position).getSource());
         holder.titleTv.setText(arrayList.get(position).getTitle());
         holder.tailTv.setText(arrayList.get(position).getTail());
+        holder.ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String link = arrayList.get(position).getLink();
+                onClickEva.onClickEva(link);
+
+            }
+        });
 
     }
 
@@ -63,6 +78,7 @@ public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.Vi
         private TextView sourceTv;
         private TextView titleTv;
         private TextView tailTv;
+        private LinearLayout ll;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -70,6 +86,7 @@ public class EvaluatingAdapter extends RecyclerView.Adapter<EvaluatingAdapter.Vi
             sourceTv = (TextView) itemView.findViewById(R.id.sourceTv);
             titleTv = (TextView) itemView.findViewById(R.id.titleTv);
             tailTv = (TextView) itemView.findViewById(R.id.tailTv);
+            ll = (LinearLayout) itemView.findViewById(R.id.ll);
 
         }
     }

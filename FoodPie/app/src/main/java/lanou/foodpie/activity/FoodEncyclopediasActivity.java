@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
@@ -23,7 +21,7 @@ import lanou.foodpie.R;
 import lanou.foodpie.abs.AbsBaseActivity;
 import lanou.foodpie.adpter.FoodSorAdapter;
 import lanou.foodpie.adpter.PopAdapter;
-import lanou.foodpie.adpter.PopAdapterAll;
+import lanou.foodpie.adpter.PopAllAdapter;
 import lanou.foodpie.bean.FoodDataBean;
 import lanou.foodpie.bean.FoodSortBean;
 import lanou.foodpie.bean.SearchBean;
@@ -160,14 +158,14 @@ public class FoodEncyclopediasActivity extends AbsBaseActivity implements View.O
                 View popupWindowViewAll = getLayoutInflater().inflate
                         (R.layout.foodencyclopedias_popwindowall, null, false);
                 RecyclerView popAllRv = (RecyclerView) popupWindowViewAll.findViewById(R.id.popAllRv);
-                PopAdapterAll popAdapterAll = new PopAdapterAll(this);
-                popAllRv.setAdapter(popAdapterAll);
+                PopAllAdapter popAllAdapter = new PopAllAdapter(this);
+                popAllRv.setAdapter(popAllAdapter);
                 LinearLayoutManager manager = new LinearLayoutManager(this);
                 popAllRv.setLayoutManager(manager);
                 categories = (List<FoodDataBean.GroupBean.CategoriesBean.SubCategoriesBean>)
                         this.getIntent().getSerializableExtra("categories");
                 Log.d("FoodEncyclopediasActivi", "categories:" + categories);
-                popAdapterAll.setBeanList(categories);
+                popAllAdapter.setBeanList(categories);
                 // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
                 popupWindow = new PopupWindow
                         (popupWindowViewAll, RelativeLayout.LayoutParams.WRAP_CONTENT,

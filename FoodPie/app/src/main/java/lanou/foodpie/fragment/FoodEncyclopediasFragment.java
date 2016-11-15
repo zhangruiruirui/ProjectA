@@ -1,7 +1,10 @@
 package lanou.foodpie.fragment;
 
 import android.content.Intent;
+import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -12,6 +15,7 @@ import java.util.List;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.R;
 import lanou.foodpie.activity.FoodEncyclopediasActivity;
+import lanou.foodpie.activity.SearchActivity;
 import lanou.foodpie.adpter.FoodEncyclopediasAdapter;
 import lanou.foodpie.bean.FoodDataBean;
 import lanou.foodpie.onclickItemlistener.OnClickFoodSor;
@@ -23,7 +27,7 @@ import lanou.foodpie.web.VolleySingleton;
  * Created by ZhangRui on 16/10/21.
  * 食物百科Fragment
  */
-public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFoodSor {
+public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFoodSor, View.OnClickListener {
     private String uri = UrlWeb.urlFood;
     private FoodEncyclopediasAdapter packsAdapter = new FoodEncyclopediasAdapter();
     private FoodEncyclopediasAdapter hotAdapter = new FoodEncyclopediasAdapter();
@@ -32,6 +36,7 @@ public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFo
     private GridView gvPacks;
     private GridView gvHot;
     private GridView gvChain;
+    private LinearLayout searchLl;
 
     @Override
     protected int getLayout() {
@@ -43,6 +48,7 @@ public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFo
         gvChain = bindView(R.id.packsGv);
         gvHot = bindView(R.id.hotGv);
         gvPacks = bindView(R.id.chainGv);
+        searchLl = bindView(R.id.foodElLl);
 
         packsAdapter = new FoodEncyclopediasAdapter();
         hotAdapter = new FoodEncyclopediasAdapter();
@@ -51,6 +57,7 @@ public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFo
         packsAdapter.setonClickFoodSor(this);
         hotAdapter.setonClickFoodSor(this);
         chainAdapter.setonClickFoodSor(this);
+        searchLl.setOnClickListener(this);
     }
     @Override
     protected void initData() {
@@ -91,6 +98,13 @@ public class FoodEncyclopediasFragment extends BaseFragment implements OnClickFo
         intent.putExtra("id", id);
         intent.putExtra("name", name);
         intent.putExtra("categories",(Serializable) categories);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        Log.d("FoodEncyclopediasFragme", "aa");
         startActivity(intent);
     }
 }

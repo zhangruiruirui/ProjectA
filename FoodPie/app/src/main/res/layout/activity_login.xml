@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fce9e9e9"
+    tools:context="lanou.foodpie.activity.LoginActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#fbfcfb"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/loginLl"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="25dp"
+                android:background="@mipmap/ic_back_dark"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="登录"
+                android:textSize="20dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="不用注册, 用以下账号直接登录"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="158dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:drawableTop="@mipmap/ic_login_qq"
+        android:padding="15dp"
+        android:text="QQ"
+        android:drawablePadding="10dp"
+        android:id="@+id/qqTv"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="#030303"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:drawableTop="@mipmap/ic_login_wechat"
+        android:padding="15dp"
+        android:text="微信"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="#030303"
+        android:layout_height="wrap_content"
+        android:id="@+id/wxTv"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/qqTv"
+        android:layout_toEndOf="@+id/qqTv" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:drawableTop="@mipmap/ic_login_weibo"
+        android:padding="15dp"
+        android:text="微博"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="#030303"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/wxTv"
+        android:layout_toEndOf="@+id/wxTv" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:drawableTop="@mipmap/ic_login_boohee"
+        android:padding="15dp"
+        android:text="薄荷"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="#030303"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@mipmap/img_tomato_bread"
+        android:layout_alignParentBottom="true"
+        android:layout_height="140dp" />
+
+
+
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/homepageRl"
     android:layout_height="wrap_content">
@@ -38,7 +39,7 @@
         />
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="36dp"
         android:text="bb"
         android:id="@+id/descriptionTv"
         />
@@ -47,27 +48,35 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <lanou.foodpie.customview.CircleImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:isCircle="true"
         android:src="@mipmap/ic_back_dark"
         android:id="@+id/publisher_avatarIv"
         />
 
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right"
         android:text="cc"
-        android:id="@+id/typeTv"/>
-</LinearLayout>
-
-
-
+        android:layout_marginLeft="7dp"
+        android:id="@+id/publisher"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="dd"
+            android:paddingRight="10dp"
+            android:layout_gravity="right"
+            android:drawableLeft="@mipmap/ic_photo_agree"
+            android:id="@+id/likeTv"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-
-
-
+</LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

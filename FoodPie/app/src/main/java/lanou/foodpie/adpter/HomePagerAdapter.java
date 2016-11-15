@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -26,7 +27,7 @@ import lanou.foodpie.web.VolleySingleton;
 public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.ViewHolder> {
     private Context context;
     private static final int TYPE_LINK_IMG = 6;
-    private static  final int TYPE_FOOD_IMG = 5;
+    private static final int TYPE_FOOD_IMG = 5;
     private List<HomeDataBean.FeedsBean> arrayList;
     private OnClickHomePagerDetails onClickHomePagerDetails;
 
@@ -42,7 +43,7 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
     public void setArrayList(List<HomeDataBean.FeedsBean> arrayList, boolean isRefresh) {
         if (isRefresh || arrayList == null) {
             this.arrayList = arrayList;
-        }else {
+        } else {
             this.arrayList.addAll(arrayList);
         }
         notifyDataSetChanged();
@@ -52,14 +53,14 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case TYPE_FOOD_IMG:
-                View view = LayoutInflater.from(context).inflate
-                        (R.layout.item_homepager,parent,false);
-                ViewHolder myViewHolder = new ViewHolder(view);
+                View homePagerView = LayoutInflater.from(context).inflate
+                        (R.layout.item_homepager, parent, false);
+                ViewHolder myViewHolder = new ViewHolder(homePagerView);
                 return myViewHolder;
             case TYPE_LINK_IMG:
-                View view1 = LayoutInflater.from(context).inflate
-                        (R.layout.item_homepagerdetails,parent,false);
-                ViewHolder viewHolder = new ViewHolder(view1);
+                View detailsView = LayoutInflater.from(context).inflate
+                        (R.layout.item_homepagerdetails, parent, false);
+                ViewHolder viewHolder = new ViewHolder(detailsView);
                 return viewHolder;
 
         }
@@ -79,11 +80,13 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
         Log.d("HomePagerAdapter", "type:" + Content_type);
         switch (Content_type) {
             case TYPE_FOOD_IMG:
-                VolleySingleton.getInstance().getImage(arrayList.get(position).getCard_image(),holder.cardIv);
-
+                VolleySingleton.getInstance().getImage(arrayList.get(position).getCard_image(), holder.cardIv);
+                VolleySingleton.getInstance().getImage(arrayList.get(position).getPublisher_avatar(), holder.publisher_avatarIv);
                 holder.titleTv.setText(arrayList.get(position).getTitle());
-                VolleySingleton.getInstance().getImage(arrayList.get(position).getPublisher(),holder.publisher_avatarIv);
+                holder.publisher.setText(arrayList.get(position).getPublisher());
+                holder.likeTv.setText(String.valueOf(arrayList.get(position).getLike_ct()));
                 holder.descriptionTv.setText(arrayList.get(position).getDescription());
+
                 holder.homepageRl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -91,16 +94,17 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
                         String name = arrayList.get(position).getTitle();
                         int like = arrayList.get(position).getLike_ct();
                         String head = arrayList.get(position).getPublisher();
-                        onClickHomePagerDetails.onClickHomePager(image, name, name, head);
+                        onClickHomePagerDetails.onClickHomePager(image, name, head, like);
                     }
                 });
                 break;
             case TYPE_LINK_IMG:
-                VolleySingleton.getInstance().getImage(arrayList.get(position).getCard_image(),holder.linkIv);
+                VolleySingleton.getInstance().getImage(arrayList.get(position).getCard_image(), holder.linkIv);
                 holder.ll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        onClickHomePagerDetails.onPictureClick(arrayList.get(position).getLink());
+                        String link = arrayList.get(position).getLink();
+                        onClickHomePagerDetails.onPictureClick(link);
 
                     }
                 });
@@ -112,14 +116,10 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
     }
 
 
-
-
     @Override
     public int getItemCount() {
         return arrayList == null ? 0 : arrayList.size();
     }
-
-
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -128,11 +128,13 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
         private ImageView cardIv;
         private TextView titleTv;
         private TextView typeTv;
-        private TextView descriptionTv;
+        private TextView publisher;
         private LinearLayout ll;
         private RelativeLayout homepageRl;
         private ImageView publisher_avatarIv;
         private ImageView linkIv;
+        private TextView descriptionTv;
+        private TextView likeTv;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -140,8 +142,10 @@ public class HomePagerAdapter extends RecyclerView.Adapter<HomePagerAdapter.View
             titleTv = (TextView) itemView.findViewById(R.id.titleTv);
             typeTv = (TextView) itemView.findViewById(R.id.typeTv);
             publisher_avatarIv = (ImageView) itemView.findViewById(R.id.publisher_avatarIv);
-            descriptionTv = (TextView) itemView.findViewById(R.id.descriptionTv);
+            publisher = (TextView) itemView.findViewById(R.id.publisher);
             linkIv = (ImageView) itemView.findViewById(R.id.linkIv);
+            likeTv = (TextView) itemView.findViewById(R.id.likeTv);
+            descriptionTv = (TextView) itemView.findViewById(R.id.descriptionTv);
 
             homepageRl = (RelativeLayout) itemView.findViewById(R.id.homepageRl);
             ll = (LinearLayout) itemView.findViewById(R.id.ll_homepage);

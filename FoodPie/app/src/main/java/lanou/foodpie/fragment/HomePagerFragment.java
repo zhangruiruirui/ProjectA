@@ -13,6 +13,7 @@ import lanou.foodpie.R;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.abs.EndLessOnScrollListener;
 import lanou.foodpie.activity.HomePagerDetailsActivity;
+import lanou.foodpie.activity.HomePagerLinkActivity;
 import lanou.foodpie.adpter.HomePagerAdapter;
 import lanou.foodpie.bean.HomeDataBean;
 import lanou.foodpie.onclickItemlistener.OnClickHomePagerDetails;
@@ -43,7 +44,8 @@ public class HomePagerFragment extends BaseFragment implements OnClickHomePagerD
         manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rcHomePager.setLayoutManager(manager);
         rcHomePager.setAdapter(homePagerAdapter);
-        rcHomePager.addOnScrollListener(endLessOnScrollListener = new EndLessOnScrollListener(manager) {
+        rcHomePager.addOnScrollListener(endLessOnScrollListener = new
+                EndLessOnScrollListener(manager) {
             @Override
             protected void onLoadMore(int curentPage) {
                 srHome.setRefreshing(true);
@@ -100,7 +102,7 @@ public class HomePagerFragment extends BaseFragment implements OnClickHomePagerD
     }
 
     @Override
-    public void onClickHomePager(String Image, String name, String headIcon, String Like_ct) {
+    public void onClickHomePager(String Image, String name, String headIcon, int Like_ct) {
         Intent intent = new Intent(getActivity(), HomePagerDetailsActivity.class);
         intent.putExtra("image", Image);
         intent.putExtra("name", name);
@@ -113,6 +115,8 @@ public class HomePagerFragment extends BaseFragment implements OnClickHomePagerD
     public void onPictureClick(String link) {
         Intent intent = new Intent(getActivity(), HomePagerLinkActivity.class);
         intent.putExtra("Link", link);
+        Log.d("HomePagerFragment", link);
+
         startActivity(intent);
 
     }

@@ -1,5 +1,6 @@
 package lanou.foodpie.fragment;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -10,8 +11,10 @@ import com.android.volley.VolleyError;
 import lanou.foodpie.R;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.abs.EndLessOnScrollListener;
+import lanou.foodpie.activity.KnowledgeActivity;
 import lanou.foodpie.adpter.KnowledgeAdapter;
 import lanou.foodpie.bean.KnowledgeDataBean;
+import lanou.foodpie.onclickItemlistener.OnClickKnow;
 import lanou.foodpie.web.GsonRequest;
 import lanou.foodpie.constant.UrlWeb;
 import lanou.foodpie.web.VolleySingleton;
@@ -54,6 +57,14 @@ public class KnowledgeFragment extends BaseFragment {
 //                arrayList.clear();
                 getGsonRequest(url,true);
                 knowSr.setRefreshing(false);
+            }
+        });
+        knowledgeAdapter.setOnClickKnow(new OnClickKnow() {
+            @Override
+            public void onClickKnow(String link) {
+                Intent intent = new Intent(getActivity(), KnowledgeActivity.class);
+                intent.putExtra("link",link);
+                startActivity(intent);
             }
         });
 

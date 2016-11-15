@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/custom_title"/>
@@ -36,14 +37,18 @@
                 android:layout_alignParentBottom="true"
                 android:layout_height="162dp">
 
-                <ImageView
+                <lanou.foodpie.customview.CircleImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/myIb"
-                    android:background="@drawable/circle_shape"
+                    android:id="@+id/myIv"
+                    app:isCircle="true"
                     android:layout_marginBottom="8dp"
                     android:layout_centerInParent="true"
                     />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/myNameTv"
+                    android:layout_height="wrap_content" />
                 <Button
                     android:layout_width="80dp"
                     android:layout_height="30dp"
@@ -56,6 +61,15 @@
                     android:textSize="17dp"
                     android:text="点击登录"
                      />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
+                    android:visibility="gone"
+                    android:id="@+id/myDataBtn"
+                    android:textColor="#f9faf9"
+                    android:text="修改个人资料" />
+
 
             </LinearLayout>
         </RelativeLayout>

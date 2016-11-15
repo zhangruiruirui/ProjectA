@@ -2,6 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:text="梦画 - 睡个好觉, 画个好梦"
+        android:id="@+id/linkTv"
+        android:drawableLeft="@mipmap/ic_back_dark"
+        android:layout_height="wrap_content" />
+
+    <WebView
+        android:layout_width="match_parent"
+        android:id="@+id/linkWv"
+        android:layout_height="match_parent">
+    </WebView>
+
 
 
 </LinearLayout>
