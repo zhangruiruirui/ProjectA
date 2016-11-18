@@ -41,19 +41,20 @@ public class HomePagerFragment extends BaseFragment implements OnClickHomePagerD
 //        arrayList = new ArrayList<>();
         homePagerAdapter = new HomePagerAdapter(getContext());
         getGsonRequest(url, true);
-        manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        manager = new StaggeredGridLayoutManager
+                (2, StaggeredGridLayoutManager.VERTICAL);
         rcHomePager.setLayoutManager(manager);
         rcHomePager.setAdapter(homePagerAdapter);
         rcHomePager.addOnScrollListener(endLessOnScrollListener = new
                 EndLessOnScrollListener(manager) {
-            @Override
-            protected void onLoadMore(int curentPage) {
-                srHome.setRefreshing(true);
-                getGsonRequest(urlPage + page + urlPages, false);
-                page++;
-                srHome.setRefreshing(false);
-            }
-        });
+                    @Override
+                    protected void onLoadMore(int curentPage) {
+                        srHome.setRefreshing(true);
+                        getGsonRequest(urlPage + page + urlPages, false);
+                        page++;
+                        srHome.setRefreshing(false);
+                    }
+                });
 
         srHome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

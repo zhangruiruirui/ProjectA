@@ -31,6 +31,7 @@ import cn.sharesdk.tencent.qq.QQ;
 import lanou.foodpie.abs.BaseFragment;
 import lanou.foodpie.R;
 import lanou.foodpie.activity.LoginActivity;
+import lanou.foodpie.activity.PersonalActivity;
 import lanou.foodpie.activity.SetActivity;
 import lanou.foodpie.web.VolleySingleton;
 
@@ -92,6 +93,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
         btnLogIn.setOnClickListener(this);
         myIv.setOnClickListener(this);
         setBtn.setOnClickListener(this);
+        myDataBtn.setOnClickListener(this);
         // 请求头像图片
         Bitmap b = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_analyse_default);
         myIv.setImageBitmap(toRoundCorner(b, 100));
@@ -123,7 +125,11 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.setBtn:
                 Intent intent = new Intent(getActivity(), SetActivity.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.myDataBtn:
+                Intent intent2 = new Intent(getActivity(), PersonalActivity.class);
+                startActivity(intent2);
                 break;
 
         }
@@ -150,13 +156,20 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("Sysout", "resultCode:" + resultCode);
         if (data == null) {
+            //退出登录
+            btnLogIn.setVisibility(View.VISIBLE);
+            maNameTv.setVisibility(View.GONE);
+            myDataBtn.setVisibility(View.GONE);
+            myIv.setImageResource(R.mipmap.ic_analyse_default);
             return;
         }
-        Log.d("MyFragment", "resultCode:" + resultCode);
-        if (requestCode == 1 && LoginActivity.RESULT == resultCode) {
 
-            Log.d("MyFragment123", "yubxibgfdsfnl");
+
+        Log.d("MyFragment", "resultCode:" + resultCode);
+        if (requestCode == 1 && LoginActivity.RESULT == resultCode && data != null) {
+
             name = data.getStringExtra("name");
             Log.d("MyFragment123", name);
             icon = data.getStringExtra("icon");

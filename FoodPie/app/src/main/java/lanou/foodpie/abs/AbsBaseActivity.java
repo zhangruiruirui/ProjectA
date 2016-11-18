@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * Created by ZhangRui on 16/10/21.
  * Activity的基类
@@ -45,6 +47,32 @@ public abstract class AbsBaseActivity extends AppCompatActivity {
             view.setOnClickListener(clickListener);
         }
     }
+
+
+    // 单例
+    /**
+     * If there is no bug, then it is created by ChenFengYao on 2016/11/18,
+     * otherwise, I do not know who create it either.
+     */
+//    public class MySingle {
+//        private static final AtomicReference<MySingle> INSTANCE = new AtomicReference<MySingle>();
+//
+//        public static MySingle getInstance() {
+//            for (; ; ) {
+//                MySingle current = INSTANCE.get();
+//                if (current != null) {
+//                    return current;
+//                }
+//                current = new MySingle();
+//                if (INSTANCE.compareAndSet(null, current)) {
+//                    return current;
+//                }
+//            }
+//        }
+//
+//        private MySingle() {
+//        }
+//    }
 
 
 }

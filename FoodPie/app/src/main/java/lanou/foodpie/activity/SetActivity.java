@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.HashMap;
@@ -36,6 +37,8 @@ public class SetActivity extends AbsBaseActivity implements View.OnClickListener
     private LinearLayout proposalLl;
     private Button backBtn;
     private PlatformActionListener platformActionListener;
+    private TextView mbTv;
+    private String a;
 
     @Override
     protected int getLayout() {
@@ -48,10 +51,18 @@ public class SetActivity extends AbsBaseActivity implements View.OnClickListener
         setBtn = bindView(R.id.setBtn);
         backBtn = bindView(R.id.backBtn);
         proposalLl = bindView(R.id.proposalLl);
+        mbTv = bindView(R.id.mbTv);
         setLl.setOnClickListener(this);
         setBtn.setOnClickListener(this);
         proposalLl.setOnClickListener(this);
         backBtn.setOnClickListener(this);
+
+        try {
+            String cacheSize = DataCleanManager.getCacheSize(getCacheDir());
+            mbTv.setText(cacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -83,12 +94,12 @@ public class SetActivity extends AbsBaseActivity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.setLl:
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("是与否只在一点之间请慎重选择啊");
+                builder.setMessage("是否清除缓存?");
                 builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DataCleanManager.cleanInternalCache(this);
-                        dialog.dismiss();
+                        DataCleanManager.cleanInternalCache(SetActivity.this);
+                        refresh();
                     }
                 });
                 builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
@@ -118,9 +129,17 @@ public class SetActivity extends AbsBaseActivity implements View.OnClickListener
                 qq.showUser(null);//授权并获取用户信息
 //isValid和removeAccount不开启线程，会直接返回。
 //                qq.removeAccount(true);
+                setResult(-1);
                 finish();
+
                 break;
+
         }
     }
 
+    private void refresh() {
+        finish();
+        Intent intent = new Intent(SetActivity.this, SetActivity.class);
+        startActivity(intent);
+    }
 }
