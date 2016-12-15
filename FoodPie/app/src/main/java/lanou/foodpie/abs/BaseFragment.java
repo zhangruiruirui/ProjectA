@@ -16,7 +16,9 @@ import lanou.foodpie.R;
 public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
         if (getLayout() == 0) {
             // 如果 Fragment没有指定布局
